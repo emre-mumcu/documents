@@ -3,9 +3,10 @@
 ```zsh
 # Git global configuration
 % git config --global user.name "Emre Mumcu"
-% git config --global user.email "emre@mumcu.net"
+% git config --global user.email "emumcu@outlook.com"
 % git config --global http.sslVerify false
-% git config --global init.defaultBranch <name>
+% git config --global init.defaultBranch main
+% git config --global credential.helper wincred
 
 # NOTE: Pushing a large repository to remote github can cause the following error:
 # error: RPC failed; HTTP 400 curl 22 The requested URL returned error: 400
