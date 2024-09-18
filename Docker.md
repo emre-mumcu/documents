@@ -91,7 +91,7 @@ docker run \
 
 `host.docker.internal` as host name.
 
-## Postgres Sample Database
+# Postgres Sample Database
 https://www.postgresqltutorial.com/postgresql-getting-started/postgresql-sample-database/ 
 
 ## How to Restore Data Dump Using pg_restore
