@@ -90,7 +90,31 @@ Fire up a browser and go to https://username.github.io
 
 # Personel Access Tokens
 
-Creating a personal access token (classic)
+Personal access tokens are an alternative to using passwords for authentication to GitHub when using the GitHub API or the command line.
+
+GitHub currently supports two types of personal access tokens: fine-grained personal access tokens and personal access tokens (classic). GitHub recommends that you use fine-grained personal access tokens instead of personal access tokens (classic) whenever possible.
+
+Fine-grained personal access tokens have several security advantages over personal access tokens (classic). Personal access tokens (classic) are less secure. However, some features currently will only work with personal access tokens (classic).
+
+## Creating a fine-grained personal access token
+
+* Verify your email address, if it hasn't been verified yet.
+* In the upper-right corner of any page on GitHub, click your profile photo, then click  Settings.
+* In the left sidebar, click  Developer settings.
+* In the left sidebar, under  Personal access tokens, click Fine-grained tokens.
+* Click Generate new token.
+* Under Token name, enter a name for the token.
+* Under Expiration, select an expiration for the token.
+* Optionally, under Description, add a note to describe the purpose of the token.
+* Under Resource owner, select a resource owner. The token will only be able to access resources owned by the selected resource owner. Organizations that you are a member of will not appear unless the organization opted in to fine-grained personal access tokens. For more information, see "Setting a personal access token policy for your organization."
+* Optionally, if the resource owner is an organization that requires approval for fine-grained personal access tokens, below the resource owner, in the box, enter a justification for the request.
+* Under Repository access, select which repositories you want the token to access. You should choose the minimal repository access that meets your needs. Tokens always include read-only access to all public repositories on GitHub.
+* If you selected Only select repositories in the previous step, under the Selected repositories dropdown, select the repositories that you want the token to access.
+* Under Permissions, select which permissions to grant the token. Depending on which resource owner and which repository access you specified, there are repository, organization, and account permissions. You should choose the minimal permissions necessary for your needs.
+* Click Generate token.
+
+## Creating a personal access token (classic)
+
 * In the upper-right corner of any page on GitHub, click your profile photo, then click Settings.
 * In the left sidebar, click  Developer settings.
 * In the left sidebar, under  Personal access tokens, click Tokens (classic).
