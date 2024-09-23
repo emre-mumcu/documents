@@ -6,6 +6,7 @@
 % git config --global user.email "emumcu@outlook.com"
 % git config --global http.sslVerify false
 % git config --global init.defaultBranch main
+# For Windows: If you use wincred for credential.helper, git is using the standard windows Credential Manager to store your credentials.
 % git config --global credential.helper wincred
 
 # NOTE: Pushing a large repository to remote github can cause the following error:
