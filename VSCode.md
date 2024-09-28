@@ -27,6 +27,11 @@ Also update the:
 
 Gitlens > Current Line: Enabled seting and unchek the check mark. (gitlens.toggleLineBlame)
 
+Diff Decorations Gutter
+
+Diff Decorations Gutter Width 1
+Diff Decorations Gutter Visibility hover
+
 # CodeLens
 
 Editor: Code Lens Font Size 10
