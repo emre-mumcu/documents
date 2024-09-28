@@ -23,6 +23,10 @@ Open settings and search for "Diff Decorations Gutter Action" and set to none. O
 "scm.diffDecorationsGutterAction": "none"
 ```
 
+Also update the:
+
+Gitlens > Current Line: Enabled seting and unchek the check mark. (gitlens.toggleLineBlame)
+
 # Sort Lines
 
 Open keyboard shortcuts (Cmd+K   Cmd+S) and search for  editor.action.sortLines and set key-bindings to the following: 
