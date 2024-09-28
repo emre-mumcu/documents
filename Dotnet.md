@@ -1,3 +1,45 @@
+# Fixing the HTTPS Developer Certificate Error in .NET on macOS Sequoia
+
+MacOS 15 Sequoia has introduced changes to its security APIs which has broken the dotnet CLI's ability to generate and trust HTTPS developer certificates.
+
+The command dotnet dev-certs https fails with the message:
+
+```
+There was an error creating the HTTPS developer certificate.
+```
+
+## Workaround
+
+1) Just in case, delete any certs that currently exist. Open a terminal and run: 
+
+```zsh
+% dotnet dev-certs https --clean
+```
+
+2) Download the tar.gz file of the "main" release from the .NET SDK package table. You can also access the links directly below.
+
+https://aka.ms/dotnet/9.0.1xx/daily/dotnet-sdk-osx-arm64.tar.gz
+https://aka.ms/dotnet/9.0.1xx/daily/dotnet-sdk-osx-x64.tar.gz
+
+3) Unpack the downloaded file.
+
+4) Remove the quarantine attribute from the unpacked folder. From your terminal run:
+
+```zsh
+% xattr -d com.apple.quarantine -r <folderName>
+% xattr -d com.apple.quarantine -r dotnet-sdk-9.0.100-rc.2.24473.22-osx-arm64
+```
+
+5) Navigate to the unpacked folder: cd dotnet-sdk-9.0.100-rc.2.24473.22-osx-x64
+
+6) From within this folder, run the following to generate and trust the certificate. 
+
+```zsh
+% ./dotnet dev-certs https --trust
+```
+
+Note the ./ before dotnet – this ensures you're using the version you just downloaded, not the globally installed one.
+
 # Dotnet SDK
 
 The .NET SDK allows you to develop apps with .NET. If you install the .NET SDK, you don't need to install the corresponding runtime. The ASP.NET Core Runtime allows you to run apps that were made with .NET that didn't provide the runtime. As an alternative to the ASP.NET Core Runtime, you can install the .NET Runtime, which doesn't include ASP.NET Core support.
