@@ -27,6 +27,11 @@ Also update the:
 
 Gitlens > Current Line: Enabled seting and unchek the check mark. (gitlens.toggleLineBlame)
 
+# CodeLens
+
+Editor: Code Lens Font Size 10
+
+
 # Sort Lines
 
 Open keyboard shortcuts (Cmd+K   Cmd+S) and search for  editor.action.sortLines and set key-bindings to the following: 
