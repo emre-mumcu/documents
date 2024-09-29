@@ -68,6 +68,12 @@
 % brew install git
 ```
 
+## Pyhton
+
+```zsh
+% brew install python
+```
+
 ## Mkcert
 
 ```zsh
