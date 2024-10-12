@@ -9,12 +9,31 @@
 
 # List installed brews
 % brew list
+
+# Update
+% brew update
+
+# Configuration
+% brew config
 ```
 
 ## Dotnet SDK
 
 ```zsh
 % brew install --cask dotnet-sdk
+```
+
+## Jdk
+
+```zsh
+# Oracle Jdk
+brew install --cask oracle-jdk
+brew install --cask oracle-jdk@17
+brew install --cask oracle-jdk@21
+
+# Open Jdk
+brew install java
+brew install openjdk@8
 ```
 
 ## Node.js
@@ -114,4 +133,27 @@
 
 ```zsh
 % brew install --cask font-fontawesome
+```
+
+# Popular Brews
+
+```
+wget
+python3
+youtube-dl
+tree
+docker
+htop
+bash
+mariadb
+sqlite
+rabbitmq
+httpie
+certbot
+nginx
+zsh-syntax-highlighting
+postgresql
+gimp
+links
+midnight-commander
 ```

@@ -1,3 +1,54 @@
+# dotnet-aspnet-codegenerator
+
+```zsh
+% dotnet tool install --global dotnet-aspnet-codegenerator
+% dotnet tool update -g dotnet-aspnet-codegenerator
+% dotnet tool uninstall -g dotnet-aspnet-codegenerator
+
+% dotnet aspnet-codegenerator -p . controller -name DemoController -outDir .\Controllers -api
+```
+
+# dotnet ssl certificate
+
+```zsh
+% dotnet dev-certs https --trust
+```
+
+# dotnet ef
+
+```zsh
+% dotnet tool install --global dotnet-ef
+% dotnet tool update --global dotnet-ef
+
+# To unapply all migrations:
+% dotnet ef database update 0
+# To remove all migrations
+% dotnet ef migrations remove
+# To delete database
+% dotnet ef database drop
+
+% dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+% dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
+% dotnet add package Microsoft.EntityFrameworkCore.Design
+
+% dotnet ef migrations add Mig0 -o App_Data\Migrations
+% dotnet ef database update 
+% dotnet ef database drop
+% dotnet ef migrations remove
+
+% dotnet ef migrations script -o script.sql
+% dotnet ef migrations script Mig0 Mig1 -o script.sql
+
+# [-p <ProjectHavingDbContext> -s <StartupProject> ]
+
+cat << \EOF >> ~/.zprofile
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/emre/.dotnet/tools"
+EOF
+
+# And run `zsh -l` to make it available for current session.
+```
+
 # Fixing the HTTPS Developer Certificate Error in .NET on macOS Sequoia
 
 MacOS 15 Sequoia has introduced changes to its security APIs which has broken the dotnet CLI's ability to generate and trust HTTPS developer certificates.

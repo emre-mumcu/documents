@@ -1,5 +1,27 @@
 # MacOS Tips & Tricks
 
+## MacOS Recovery
+
+* Command-R: When you press and hold these two keys at startup, Recovery will offer the current version of the most recently installed macOS.
+* Option-Command-R: When you press and hold these three keys at startup, Recovery might offer the latest macOS that is compatible with your Mac.
+* Shift-Option-Command-R: When you press and hold these four keys at startup, Recovery might offer the macOS that came with your Mac, or the closest version still available.
+
+## Auto Power On/Off
+
+```zsh
+# Disable auto power on when the lid is open or power cable is connected:
+% sudo nvram AutoBoot=%00
+
+# Enable auto power on when the lid is open or power cable is connected:
+% sudo nvram AutoBoot=%03
+```
+
+## Bootable USB for MacOS
+
+```zsh
+% sudo /Applications/Install\ macOS\ Sonoma.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+```
+
 ## Open Finder From Terminal
 
 ```zsh
