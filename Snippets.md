@@ -106,3 +106,6 @@ nfi.NumberGroupSeparator = " ";
 
 string formatted = 1234897.11m.ToString("#,0.00", nfi); // "1 234 897.11"
 ```
+
+builder.Services.Configure<IISServerOptions>(options => { options.AllowSynchronousIO = true; });
+
