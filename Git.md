@@ -60,6 +60,34 @@ example.txt
 example_folder/
 ```
 
+### Notes
+
+* git add -A 	stages all changes (git add --all)
+* git add . 	stages new files and modifications, without deletions (on the current directory and its subdirectories).
+* git add -u 	stages modifications and deletions, without new files
+* git add -A 	is equivalent to `git add .` and `git add -u`
+
+
+The important point about `git add .` is that it looks at the working tree and adds all those paths to the staged changes if they are either changed or are new and not ignored, it does not stage any 'rm' actions.
+
+`git add -u` looks at all the already tracked files and stages the changes to those files if they are different or if they have been removed. It does not add any new files, it only stages changes to already tracked files.
+
+`git add -A` is a handy shortcut for doing both of those.
+
+`git add .` only affects the current directory and subdirectories, if this command is run in a sub folder, the subfolder and its childs will be affected, but parent folders will not be affected.
+`git add -A` affects all directory tree
+
+Running `git add .` in the root folder will be same result as `git add -A`
+
+```zsh
+git status
+git remote show origin
+git config --get remote.origin.url
+git remote show
+% git log --patch -- Snippets.md -> show the changes made in each commit.
+% git log --follow -- Snippets.md -> history of a file that has been renamed
+```
+
 # Github Pages
 
 ## Step 1: Create a repository

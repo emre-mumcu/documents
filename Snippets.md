@@ -80,3 +80,17 @@ services.AddHttpLogging(logging =>
             throw new Exception("Boş");
         }
 ```
+
+# Installer Service
+
+```cs
+builder.Services.InstallerServicesFromAssembly<Program>(config);
+
+public static void InstallerServicesFromAssembly<T>(this IServiceCollection services, IConfiguration config)
+{
+var installers = typeof(T).Assembly.ExportedTypes.Where(x=> typeof(IInstaller).IsAssignableFrom(x) && x is {IsInterface: false, IsAbstract: false })
+.Select(Activator.CreateInstance).Cast<IInstaller>().ToList();
+
+installers.ForEach(installer => installer.InstallServices(services, config));
+}
+```

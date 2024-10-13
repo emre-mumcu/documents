@@ -58,6 +58,20 @@ docker run \
      -d mcr.microsoft.com/mssql/server:2019-latest
 ```
 
+```zsh
+# change sa password
+docker exec -it mssqlserver /opt/mssql-tools/bin/sqlcmd `
+   -S localhost -U sa -P "<YourStrong!Passw0rd>" `
+   -Q "ALTER LOGIN SA WITH PASSWORD='<YourNewStrong!Passw0rd>'"
+
+# create a folder in container
+docker exec -it mssqlserver mkdir /var/opt/mssql/newfolder
+
+# copy file from docker container to windows host
+docker cp f247994ca42e:/var/opt/mssql/data/MyWordsDB.mdf Desktop/MyWordsDB.mdf
+docker cp f247994ca42e:/var/opt/mssql/data/MyWordsDB_log.ldf Desktop/MyWordsDB_log.ldf
+```
+
 # MariaDB
 
 ```zsh
@@ -159,14 +173,24 @@ PSQL> \q
 # Docker Commands
 
 ```zsh
+# copy file from windows host to docker container
+docker cp file.ext mssqlserver:/var/opt/mssql/newfolder
+docker cp .\Desktop\MyWordsDB.mdf ea2c9599dfda:/var/opt/mssql/data
+docker cp .\Desktop\MyWordsDB_log.ldf ea2c9599dfda:/var/opt/mssql/data
+
 # Get container IP address
 docker inspect CONTAINER_ID | grep IPAddress
 
 # Update containers as restart always
 docker update --restart=always ContainerID
-```zsh
+
+
+docker ps -a
+docker inspect mssqlserver
 
 # Some Docker Command Parameters
 -v: Volume parameter
 -p: [HostPort:ContainerPort]
 -e: [environment variables]
+
+```
