@@ -94,3 +94,15 @@ var installers = typeof(T).Assembly.ExportedTypes.Where(x=> typeof(IInstaller).I
 installers.ForEach(installer => installer.InstallServices(services, config));
 }
 ```
+
+# Number Formats
+
+```cs
+String.Format("{0:C0}", Model.Data)
+
+ar nfi = (NumberFormatInfo)CultureInfo.InvariantCulture.NumberFormat.Clone();
+
+nfi.NumberGroupSeparator = " ";
+
+string formatted = 1234897.11m.ToString("#,0.00", nfi); // "1 234 897.11"
+```
