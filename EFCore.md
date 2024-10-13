@@ -240,3 +240,20 @@ var Track = db.Customer.AsNoTracking(!track)
 
     // .ConfigureAwait(false); ??
 ```
+
+string sql = ((System.Data.Objects.ObjectQuery)query).ToTraceString();
+
+var query = ctx.Table1s.Join(ctx.Table2s,
+  a => new { key1 = a.ID1Table1, key2 = a.ID2Table1 },
+  b => new { key1 = b.ID1Table2, key2 = b.ID2Table2 },
+  (t1, t2) => new {
+    t1.ID1Table1, t1.ID2Table1, t1.Value1Table1, t2.ID3Table2, t2.Value1Table2
+});
+
+var query = ctx.Table1s.Join(ctx.Table2s,
+  a => new { key1 = a.ID1Table1, key2 = a.ID2Table1 },
+  b => new { key1 = b.ID1Table2, key2 = b.ID2Table2 },
+  (t1, t2) => new {
+    t1.ID1Table1, t1.ID2Table1, t1.Value1Table1, t2.ID3Table2, t2.Value1Table2
+});
+
