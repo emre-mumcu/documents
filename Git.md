@@ -1,3 +1,151 @@
+# GIT
+
+https://www.atlassian.com/git/tutorials/
+
+## What is version control?
+Version control, also known as source control, is the practice of tracking and managing changes to software code. Version control software keeps track of every modification to the code in a special kind of database.
+
+The primary benefits you should expect from version control are as follows:
+
+1. A complete long-term change history of every file. 
+2. Branching and merging.
+3. Traceability.
+
+By far, the most widely used modern version control system in the world today is Git. Git is a mature, actively maintained open source project originally developed in 2005 by Linus Torvalds, the famous creator of the Linux operating system kernel.
+
+Having a distributed architecture, Git is an example of a DVCS (hence Distributed Version Control System). Rather than have only one single place for the full version history of the software as is common in once-popular version control systems like CVS or Subversion (also known as SVN), in Git, every developer's working copy of the code is also a repository that can contain the full history of all changes.
+
+Git repository are secured with a cryptographically secure hashing algorithm called SHA1. 
+
+## Setting up a repository
+A Git repository is a virtual storage of your project. It allows you to save versions of your code, which you can access when needed. 
+
+### Initializing a new repository: git init
+To create a new repo, you'll use the `git init` command. `git init` is a one-time command you use during the initial setup of a new repo.
+
+Executing this command will create a new .git subdirectory in your current working directory. This will also create a new main branch. A HEAD file is also created which points to the currently checked out commit.
+
+```zsh
+% git init
+% git init project-directory
+```
+
+#### Bare repositories --- git init --bare
+The `--bare` flag creates a repository that doesn’t have a working directory, making it impossible to edit files and commit changes in that repository. You would create a bare repository to git push and git pull from, but never directly commit to it. Central repositories should always be created as bare repositories because pushing branches to a non-bare repository has the potential to overwrite changes. Think of `--bare` as a way to mark a repository as a storage facility, as opposed to a development environment.
+
+```zsh
+% git init --bare directory
+```
+
+#### git init templates
+
+```zsh
+% git init directory --template=template_directory
+```
+
+Initializes a new Git repository and copies files from the  ＜template_directory＞ into the repository.
+
+### Cloning an existing repository: git clone
+If a project has already been set up in a central repository, the clone command is the most common way for users to obtain a local development clone. Like git init, cloning is generally a one-time operation. Once a developer has obtained a working copy, all version control operations are managed through their local repository.
+
+```zsh
+% git clone repo-url
+% git clone repo-url target-directory
+# Clone the repository located at ＜repo＞ and only clone the ref for tag
+% git clone --branch tag repo-url
+```
+
+When executed, the latest version of the remote repo files on the main branch will be pulled down and added to a new folder.
+
+The -branch argument lets you specify a specific branch to clone instead of the branch the remote HEAD is pointing to, usually the main branch. In addition you can pass a tag instead of branch for the same effect.
+
+### Saving changes to the repository: git add and git commit
+Now that you have a repository cloned or initialized, you can commit file version changes to it.
+
+The git add command adds a change in the working directory to the staging area. It tells Git that you want to include updates to a particular file in the next commit. However, git add doesn't really affect the repository in any significant way—changes are not actually recorded until you run git commit.
+
+Developing a project revolves around the basic edit/stage/commit pattern. First, you edit your files in the working directory. When you’re ready to save a copy of the current state of the project, you stage changes with git add. After you’re happy with the staged snapshot, you commit it to the project history with git commit. The git reset command is used to undo a commit or staged snapshot.
+
+In addition to git add and git commit, a third command git push is essential for a complete collaborative Git workflow. git push is utilized to send the committed changes to remote repositories for collaboration. This enables other team members to access a set of saved changes.
+
+The primary function of the git add command, is to promote pending changes in the working directory, to the git staging area. The staging area is one of Git's more unique features.
+
+```zsh
+% git add file      #
+% git add directory #
+% git add -A        # Stage all files in the entire repository
+% git add .         # Stage all files in the entire directory
+% git add -u        # Stage modified and deleted files only in the entire repository
+```
+
+The git commit command captures a snapshot of the project's currently staged changes.
+
+```zsh
+% git commit -m "commit message"
+```
+
+### Repo-to-repo collaboration: git push
+It’s important to understand that Git’s idea of a “working copy” is very different from the working copy you get by checking out source code from an SVN repository. Unlike SVN, Git makes no distinction between the working copies and the central repository—they're all full-fledged Git repositories.
+
+Whereas SVN depends on the relationship between the central repository and the working copy, Git’s collaboration model is based on repository-to-repository interaction. Instead of checking a working copy into SVN’s central repository, you push or pull commits from one repository to another.
+
+### Configuration & set up: git config
+Git stores configuration options in three separate files, which lets you scope options to individual repositories (local), user (Global), or the entire system (system).
+
+The git config command can accept arguments to specify which configuration level to operate on. The following configuration levels are available:
+
+* --local: By default, git config will write to a local level if no configuration option is passed. Local configuration values are stored in a file that can be found in the repo's .git directory: `.git/config`
+* --global: Global level configuration is user-specific, meaning it is applied to an operating system user. Global configuration values are stored in a file that is located in a user's home directory. `~/.gitconfig` on unix systems and `C:\Users\User\.gitconfig` on windows.
+* --system: System-level configuration is applied across an entire machine. This covers all users on an operating system and all repos. The system level configuration file lives in a gitconfig file off the system root path. `$(prefix)/etc/gitconfig` on unix systems. On windows this file can be found at `C:\Documents and Settings\All Users\Application Data\Git\config` on Windows XP, and in `C:\ProgramData\Git\config` on Windows Vista and newer.  
+
+Git supports colored terminal output which helps with rapidly reading Git output. You can customize your Git output to use a personalized color theme. The git config command is used to set these color values. By default, `color.ui` is set to auto which will apply colors to the immediate terminal output stream.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Resetting, checking out & reverting
+
+### Revert
+
+A revert is an operation that takes a specified commit and creates a new commit which inverses the specified commit. git revert can only be run at a commit level scope and has no file level functionality. This command creates a new commit that undoes the changes from a previous commit. This command adds new history to the project (it doesn't modify existing history).
+
+### Checkout
+
+A checkout is an operation that moves the HEAD ref pointer to a specified commit. The git checkout command can be used in a commit, or file level scope. A file level checkout will change the file's contents to those of the specific commit. This command checks-out content from the repository and puts it in your work tree. It can also have other effects, depending on how the command was invoked. For instance, it can also change which branch you are currently working on. This command doesn't make any changes to the history.
+
+
+Checkout and reset are generally used for making local or private 'undos'. They modify the history of a repository that can cause conflicts when pushing to remote shared repositories. 
+
+### Revert
+
+Revert is considered a safe operation for 'public undos' as it creates new history which can be shared remotely and doesn't overwrite history remote team members may be dependent on.
+
+You can also think of git revert as a tool for undoing committed changes, while git reset HEAD is for undoing uncommitted changes. Like git checkout , git revert has the potential to overwrite files in the working directory, so it will ask you to commit or stash changes that would be lost during the revert operation.
+
+### Using these commands
+
+If a commit has been made somewhere in the project's history, and you later decide that the commit is wrong and should not have been done, then git revert is the tool for the job. It will undo the changes introduced by the bad commit, recording the "undo" in the history.
+
+If you have modified a file in your working tree, but haven't committed the change, then you can use git checkout to checkout a fresh-from-repository copy of the file.
+
+If you have made a commit, but haven't shared it with anyone else and you decide you don't want it, then you can use git reset to rewrite the history so that it looks as though you never made that commit.
+
+
+
 # Abstract
 
 ```zsh
