@@ -68,6 +68,32 @@ public class LookAndFeelDemo
 
 # Master & Work Repository Setup
 
+https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/odi/10g/10135/odimaster_work_repos/odimaster_work_repos.htm
+
+A relational schema must be created for each repository. The following steps walk you through creating the relational schema for the ODI Master repository.
+
+## 1.1. Creating the RDBMS Schema/User (Oracle 10g XE) for the Master Repository
+
+https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/odi/10g/10135/odimaster_work_repos/odimaster_work_repos.htm#e1
+
+```sql
+-- If you are using container database (CDB)
+ALTER SESSION SET CONTAINER = XEPDB1;
+
+-- Create the schemas by executing the following SQL commands:
+create user snpm1 identified by password default tablespace users temporary tablespace temp;
+
+-- Grant connect privileges to the newly created user by executing the following SQL command:
+grant connect, resource to snpm1;
+```
+
+## 1.2. Creating the ODI Master Repository
+
+To create the ODI Master repository, open the ODI and select File-> New and select Create a New Master Repository. 
+
+In the URL field, enter the URL `jdbc:oracle:thin@localhost:1521:XE`, and then enter the User as `snpm1` and Password as `password`. 
+
+
 ## Create User
 
 ```sql
