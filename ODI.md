@@ -77,6 +77,9 @@ A relational schema must be created for each repository. The following steps wal
 https://www.oracle.com/webfolder/technetwork/tutorials/obe/fmw/odi/10g/10135/odimaster_work_repos/odimaster_work_repos.htm#e1
 
 ```sql
+
+XEPDB1
+
 -- If you are using container database (CDB)
 ALTER SESSION SET CONTAINER = XEPDB1;
 
@@ -85,6 +88,8 @@ create user snpm1 identified by password default tablespace users temporary tabl
 
 -- Grant connect privileges to the newly created user by executing the following SQL command:
 grant connect, resource to snpm1;
+
+alter user snpm1 quota UNLIMITED on USERS;
 ```
 
 ## 1.2. Creating the ODI Master Repository
@@ -92,6 +97,76 @@ grant connect, resource to snpm1;
 To create the ODI Master repository, open the ODI and select File-> New and select Create a New Master Repository. 
 
 In the URL field, enter the URL `jdbc:oracle:thin@localhost:1521:XE`, and then enter the User as `snpm1` and Password as `password`. 
+
+Database Connection
+---------------------------------------------------------
+Technology	: Oracle
+JDBC Driver	: oracle.jdbc.OracleDriver
+JDBC URL	: jdbc:oracle:thin:@127.0.0.1:1521/XEPDB1
+User		: SNPM1
+Password	: password
+DBA User	: system
+DBA Password	: aA123456
+
+
+Authentication
+Use ODI Authentication
+Supervisor User:SUPERVISOR
+Supervisor Password: aA123456
+
+Password Storage
+Internal Password Storage
+
+## 1.3. Connecting to the ODI Master Repository
+
+To connect to the ODI Master repository, open ODI and start Topology Manager. 
+Click the New icon to create a new connection to the Master repository.
+Configure Repository Connections with the parameters provided in the following table. Click the Test button. Verify successful connection and click OK. Click OK to save the connection.
+
+Oracle Data Integrator Connection
+Parameter	        Value
+Login Name	        Master Repository
+User	            SUPERVISOR
+Password	        aA123456
+Database Connection (Master Repository)
+Parameter	        Value
+User	            snpm1
+Password	        password
+Driver List	        Oracle JDBC Driver
+Driver Name	        oracle.jdbc.driver.OracleDriver
+Url	                jdbc:oracle:thin:@127.0.0.1:1521/XEPDB1
+
+Select the newly created repository connection (Master Repository) from the drop-down list. Click OK. The ODI Topology Manager starts.
+
+## 1.4. Creating and Connecting to the ODI Work Repository
+
+create user snpw1 identified by password 
+default tablespace users temporary tablespace temp;
+
+grant connect, resource to snpw1;
+
+alter user snpw1 quota UNLIMITED on USERS;
+
+Open Oracle Data Integrator and select Topology Manager tab. 
+Click Connect To Repository and choose the newly created Master repository. Click OK.
+
+Clik Repositories tab and right click Work Repositories and select New Work Repository
+
+Enter the following parameters:
+
+Parameter	Value
+Name	        WORKREP
+Technology	    Oracle
+User	        snpw1
+Password	    password
+
+
+Leave WORKREP1 password blank
+
+Open ODI designer to connect work repository
+
+
+
 
 
 ## Create User
