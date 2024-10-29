@@ -34,13 +34,13 @@ java -jar fmw_12.2.1.4.0_odi.jar
 
 # ODI UI Problem Resolution
 
-After installing ODI, when you start the application if the UI is irresponsive or laggy, upadte the `odi.conf` file in the `C:\Oracle\Middleware\Oracle_Home\odi\studio\bin` folder and add the following options:
+After installing ODI, when you start the application if the UI is irresponsive or laggy, upadte the `odi.conf` file in the `C:\Oracle\Middleware\Oracle_Home\odi\studio\bin` folder and add one of the following AddVMOption options:
 
 ``` batch
-set JAVA_HOME=C:\java\jdk8
+# set JAVA_HOME=C:\java\jdk8
 AddVMOption -Dswing.defaultlaf=com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel
-AddVMOption -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel
-AddVMOption -Dswing.defaultlaf=javax.swing.plaf.nimbus.NimbusLookAndFeel
+# AddVMOption -Dswing.defaultlaf=javax.swing.plaf.metal.MetalLookAndFeel
+# AddVMOption -Dswing.defaultlaf=javax.swing.plaf.nimbus.NimbusLookAndFeel
 ```
 
 In order to list all availavle look and feels run the following java program:
