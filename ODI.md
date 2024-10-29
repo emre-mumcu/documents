@@ -4,7 +4,7 @@
 
 https://www.oracle.com/tr/middleware/technologies/data-integrator-downloads.html
 
-2) Check you java version & set the java variables.
+2) Check you java version & set the java variables. You will need x64 version of Java if your Windows is 64 bit since msvcr100.dll will be 64 bit.
 
 ```bat
 java -version
@@ -14,7 +14,7 @@ set path=C:\Program Files\Java\jdk1.8.0_221\bin;%path%
 
 Or add the following environment variables in Windows.
 
-```
+```text
 JAVA_HOME
 Set Variable name to JAVA_HOME
 Set Variable value to the path of your JDK (e.g., C:\Program Files\Java\jdk1.8.0_xx)
@@ -30,7 +30,7 @@ Add a new entry: %JAVA_HOME%\bin
 java -jar fmw_12.2.1.4.0_odi.jar
 ```
 
-After installation completes, copy msvcr100.dll file from Windows\System32 to JAVA_HOME\jre\bin folder.
+**After installation completes, copy `msvcr100.dll` file from `Windows\System32` to `JAVA_HOME\jre\bin` folder.**
 
 # ODI UI Problem Resolution
 
