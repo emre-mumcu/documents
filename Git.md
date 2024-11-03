@@ -190,7 +190,7 @@ In the event that git rm was executed and a new commit was created which persist
 ```zsh
 % git rm -r .DS_Store
 % git commit -m ".DS_Store Removed"
-% git push origin master
+% git push origin main
 ```
 
 ## Git Reflog
