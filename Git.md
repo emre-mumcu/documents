@@ -144,7 +144,62 @@ If you have modified a file in your working tree, but haven't committed the chan
 
 If you have made a commit, but haven't shared it with anyone else and you decide you don't want it, then you can use git reset to rewrite the history so that it looks as though you never made that commit.
 
+# Git RM
 
+The git rm command can be used to remove individual files or a collection of files. The primary function of git rm is to remove tracked files from the Git index. Additionally, git rm can be used to remove files from both the staging index and the working directory. There is no option to remove a file from only the working directory. The files being operated on must be identical to the files in the current HEAD. If there is a discrepancy between the HEAD version of a file and the staging index or working tree version, Git will block the removal. This block is a safety mechanism to prevent removal of in-progress changes.
+
+## Usage
+
+```zsh
+% git rm <options> <file-or-folder>
+```
+<file-or-folder>: Specifies the target files to remove. The option value can be an individual file, a space delimited list of files file1 file2 file3, or a wildcard file glob (~./directory/*).
+
+**Options:**
+
+-f/--force: is used to override the safety check that Git makes to ensure that the files in HEAD  match the current content in the staging index and working directory.
+
+-n/--dry-run: is a safeguard that will execute the git rm command but not actually delete the files. Instead it will output which files it would have removed.
+
+-r: is shorthand for 'recursive'. When operating in recursive mode git rm will remove a target directory and all the contents of that directory.
+
+--: The separator option is used to explicitly distinguish between a list of file names and the arguments being passed to git rm.
+
+--cached: specifies that the removal should happen only on the staging index. Working directory files will be left alone.
+
+## How to undo git rm
+
+Executing git rm is not a permanent update. The command will update the staging index and the working directory. These changes will not be persisted until a new commit is created and the changes are added to the commit history. This means that the changes here can be "undone" using common Git commands.
+
+```zsh
+% git reset HEAD
+```
+
+A reset will revert the current staging index and working directory back to the HEAD commit. This will undo a git rm.
+
+```zsh
+% git checkout .
+```
+
+A checkout will have the same effect and restore the latest version of a file from HEAD.
+
+In the event that git rm was executed and a new commit was created which persist the removal, git reflog can be used to find a ref that is before the `git rm` execution.
+
+**Sample**
+
+```zsh
+% git rm -r .DS_Store
+% git commit -m ".DS_Store Removed"
+% git push origin master
+```
+
+## Git Reflog
+
+Git keeps track of updates to the tip of branches using a mechanism called reference logs, or "reflogs."
+
+```zsh
+% git reflog
+```
 
 # Abstract
 
