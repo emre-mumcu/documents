@@ -1,3 +1,6 @@
+Toggle Integrated Terminal: Ctrl+Shift+T
+Toogle View Panel : Cmd+J
+
 # Extension List
 
 Launch Visual Studio Code Quick Open (Ctrl + P)
