@@ -288,6 +288,11 @@ class DiceRoller extends StatefulWidget {
 
 // Private class: Name start with _:
 class _DiceRollerState extends State<DiceRoller> {
+  void doStg() {
+    setState(() {
+      // ...
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Text("Hello");
