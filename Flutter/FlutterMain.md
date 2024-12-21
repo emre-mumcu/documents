@@ -235,3 +235,28 @@ class GradientContainer extends StatelessWidget {
 // To use the named constructor:
 // body: GradientContainer.purple(),
 ```
+
+# Assets
+
+```yaml
+# Include all the files in the assets folder as project assets.
+flutter:
+  assets:
+    - assets/
+
+# Explicitly add files in the assets folder as project assets.
+flutter:
+  assets:
+    - assets/images/image1.png
+    - assets/images/image2.png
+    - assets/fonts/custom_font.ttf
+    - assets/other_files/file1.txt
+    - assets/other_files/file2.json
+```
+
+After making changes to the pubspec.yaml file, run flutter pub get to ensure the assets are bundled properly. You might need to perform a full restart (flutter run) for the changes to take effect.
+
+```dart
+// Use an asset image:
+Image.assets('assets/image/dice-2.png'),
+```
