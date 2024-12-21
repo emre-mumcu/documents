@@ -260,3 +260,37 @@ After making changes to the pubspec.yaml file, run flutter pub get to ensure the
 // Use an asset image:
 Image.assets('assets/image/dice-2.png'),
 ```
+
+# TextButton
+
+```dart
+      child: TextButton(
+        onPressed: () {
+          // ...
+        },
+        child: Text("Roll Dice"),
+      ),
+```
+
+# Stateful Widget
+
+```dart
+import 'package:flutter/material.dart';
+
+class DiceRoller extends StatefulWidget {
+  const DiceRoller({super.key});
+
+  @override
+  State<DiceRoller> createState() {
+    return _DiceRollerState();
+  }
+}
+
+// Private class: Name start with _:
+class _DiceRollerState extends State<DiceRoller> {
+  @override
+  Widget build(BuildContext context) {
+    return Text("Hello");
+  }
+}
+```
