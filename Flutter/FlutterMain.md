@@ -124,3 +124,46 @@ class GradientContainer extends StatelessWidget {
   }
 }
 ```
+
+```dart
+// main.dart
+import 'package:flutter/material.dart';
+import 'package:first_app/gradient_container.dart';
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      body: GradientContainer(),
+    ),
+  ));
+}
+
+// gradient_container.dart
+import 'package:flutter/material.dart';
+
+class GradientContainer extends StatelessWidget {
+  const GradientContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black, Colors.white],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
+      child: Center(
+        child: Text(
+          "Hello World",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
