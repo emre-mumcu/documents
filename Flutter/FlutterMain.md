@@ -205,8 +205,8 @@ class GradientContainer extends StatelessWidget {
 import 'package:flutter/material.dart';
 
 class StyledText extends StatelessWidget {
-  // const StyledText(this.text, {super.key}); // text is send as positional arguments
-  const StyledText({super.key, required this.text}); // text is sent as named arguments
+  // const StyledText(this.text, {super.key}); // text is send as positional arguments. positional arguments are mandatory
+  const StyledText({super.key, required this.text}); // text is sent as named arguments. required is added since named arguments are optional but text is required here
   final String text;
   @override
   Widget build(BuildContext context) {
