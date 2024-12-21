@@ -167,3 +167,50 @@ class GradientContainer extends StatelessWidget {
   }
 }
 ```
+
+```dart
+import 'package:flutter/material.dart';
+
+var startAlignment = Alignment.topCenter;
+var endAlignment = Alignment.bottomCenter;
+
+class GradientContainer extends StatelessWidget {
+  const GradientContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black, Colors.white],
+          begin: startAlignment,
+          end: endAlignment,
+        ),
+      ),
+      child: Center(
+        child: Text(
+          "Hello World",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+```dart
+import 'package:flutter/material.dart';
+
+class StyledText extends StatelessWidget {
+  // const StyledText(this.text, {super.key}); // text is send as positional arguments
+  const StyledText({super.key, required this.text}); // text is sent as named arguments
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Text(text);
+  }
+}
+```
