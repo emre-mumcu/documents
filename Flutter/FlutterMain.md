@@ -1,3 +1,37 @@
+Stateless Widgets
+Stateless widgets are used when the UI is not changing dynamically, after the first build. This means he content of the UI id static content and it is immutable.
+To create a StatelessWidget code snippet, you can type “stless” and press enter. To create a Stateless Widget manually, you need to extend the class definition from StatelessWidget and you also need to override the build method that will return one or more widgets. The following is an example of StatelessWidget:
+
+class MyStatelessWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text("MyStatelessWidget", textDirection: TextDirection.ltr);
+  }
+}
+Even if there is a change in any of the variables associated with the Widgets, the build method will not be called Even if there is a change in any of the variables associated with the Widget, since the build method will not be triggered again, nothing will be updated on the UI of the Stateless Widget.
+To change the state of the Widgets based on the state of the variables associated with the Widgets, we need to use StatefulWidgets. StatefulWidgets are used when the part of the UI changes dynamically after the UI is build for the first time.
+Statefull Widgets
+To create a Stateful Widget, you need to extend the class definition from StatefulWidget and instead of overriding the build method, you need to override the createState() method. The createState() method returns a State object. Then we create another class that is extended from State and here in this class, we need to override the build method and this build method will return one or more widgets.
+
+
+To create a StatefulWidget code snippet, you can type “stful” and press enter. The following is an example of a StatefulWidget:
+
+class MyStatefullWidget extends StatefulWidget {
+  const MyStatefullWidget({Key? key}) : super(key: key);
+ 
+  @override
+  _MyStatefullWidgetState createState() => _MyStatefullWidgetState();
+}
+ 
+class _MyStatefullWidgetState extends State<MyStatefullWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+Since the build method is overriden in ClassState, it will be called whenever there is a change in the variables associated with the Widgets present in it and the whole widget will be redrawn once again. In order to notify the state change event, we need to call “setState()” method that will trigger the build method.
+
+
 ```dart
 // Simple main
 import 'package:flutter/material.dart';
