@@ -81,6 +81,17 @@ $ flutter create first_app
 $ flutter run
 ```
 
+## Custom Gradle Path
+
+Go to System Properties > Environment Variables.
+
+Add a new system variable:
+
+    Variable Name: GRADLE_HOME
+    Variable Value: C:\path\to\custom\gradle
+
+Update the Path variable by appending %GRADLE_HOME%\bin.
+
 ## How to completely uninstall Android Studio
 
 1. Run the Android Studio uninstaller: The first step is to run the uninstaller. Open the Control Panel and under Programs, select Uninstall a Program. After that, click on "Android Studio" and press Uninstall. If you have multiple versions, uninstall them as well.
