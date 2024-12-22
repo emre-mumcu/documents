@@ -47,9 +47,11 @@ You can configure flutter using the following commands:
 ```bat
 flutter config --android-sdk /path/to/android/sdk
 flutter config --android-studio-dir /path/to/android/studio
+flutter config --jdk-dir=<JDK_DIRECTORY>
 
 flutter config --android-sdk "C:\android-sdk"
 flutter config --android-studio-dir "C:\android-studio"
+flutter config --jdk-dir="C:\Java\jdk-23\bin"
 ```
 
 Or add a new environment variable ANDROID_HOME with your Android SDK path.
@@ -83,14 +85,23 @@ $ flutter run
 
 ## Custom Gradle Path
 
-Go to System Properties > Environment Variables.
+Gradle Build Tool is a fast, dependable, and adaptable open-source build automation tool with an elegant and extensible declarative build language.
 
-Add a new system variable:
+Gradle runs on the Java Virtual Machine (JVM), which is often provided by either a JDK or JRE. A JVM version between 8 and 23 is required to execute Gradle. JVM 24 and later versions are not yet supported.
 
-    Variable Name: GRADLE_HOME
-    Variable Value: C:\path\to\custom\gradle
+Executing the Gradle daemon with JVM 16 or earlier has been deprecated and will become an error in Gradle 9.0.
 
-Update the Path variable by appending %GRADLE_HOME%\bin.
+If you are working on a Gradle project, you can check the version of Gradle used by the wrapper. Locate the gradle/wrapper/gradle-wrapper.properties file in the project directory. Open the file and look for a line containing gradle version.
+
+The gradle used by wrapper can be found in the following path in Flutter application:
+
+```text
+APPNAME\android\gradle\wrapper\gradle-wrapper.properties
+```
+See
+[Compatibility Matrix](https://docs.gradle.org/current/userguide/compatibility.html#java)
+
+[Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html#sec:upgrading_wrapper)
 
 ## How to completely uninstall Android Studio
 
