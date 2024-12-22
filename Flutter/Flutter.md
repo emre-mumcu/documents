@@ -40,12 +40,19 @@ When the flutter doctor command returns an error, it could be for Flutter, VS Co
     flutter doctor -v
 ```
 
-If you have warnings about android sdk or android studio, you can configure them using the following commands:
+## Configuration
+
+You can configure flutter using the following commands:
 
 ```bat
+flutter config --android-sdk /path/to/android/sdk
+flutter config --android-studio-dir /path/to/android/studio
+
 flutter config --android-sdk "C:\android-sdk"
 flutter config --android-studio-dir "C:\android-studio"
 ```
+
+Or add a new environment variable ANDROID_HOME with your Android SDK path.
 
 After setting up your development environment, you can verify the components running the following commands:
 
@@ -73,5 +80,27 @@ Run the following commands to create and run your first flutter application. Do 
 $ flutter create first_app
 $ flutter run
 ```
+
+## How to completely uninstall Android Studio
+
+1. Run the Android Studio uninstaller: The first step is to run the uninstaller. Open the Control Panel and under Programs, select Uninstall a Program. After that, click on "Android Studio" and press Uninstall. If you have multiple versions, uninstall them as well.
+2. Remove the Android Studio files: To delete any remains of Android Studio setting files, in File Explorer, go to your user folder `%USERPROFILE%`, and delete `.android`, `.AndroidStudio` and any analogous directories with versions on the end, i.e. `.AndroidStudio1.2`, `.gradle` and `.m2` if they exist.
+3. Also delete the any `AndroidStudio*` directories that are in `%LOCALAPPDATA%\Google` and `%APPDATA%\Google`.
+4. Finally, go to `C:\Program Files` and delete the `Android` directory.
+5. To delete any remains of the SDK, go to `%LOCALAPPDATA%` and delete the Android directory.
+
+**Summary of all paths of leftover files from Android Studio**
+
+* C:\Program Files\Android
+* C:\Users\USERNAME\AppData\Local\Android
+* C:\Users\USERNAME\AppData\Local\Google\AndroidStudio2024.2
+* C:\Users\USERNAME\AppData\Roaming\Google\AndroidStudio2024.2
+* C:\Users\USERNAME\.gradle
+* C:\Users\USERNAME\.android
+* C:\Users\USERNAME\.AndroidStudio
+* C:\Users\USERNAME\.konan
+* C:\Users\USERNAME\.m2
+
+# Flutter Source Code
 
 [Flutter Source Code](https://github.com/flutter/flutter/tree/master/packages/flutter/lib/src)
