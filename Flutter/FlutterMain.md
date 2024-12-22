@@ -30,7 +30,7 @@ class _MyStatefullWidgetState extends State<MyStatefullWidget> {
   }
 }
 Since the build method is overriden in ClassState, it will be called whenever there is a change in the variables associated with the Widgets present in it and the whole widget will be redrawn once again. In order to notify the state change event, we need to call “setState()” method that will trigger the build method.
-
+void main() => runApp(MyApp());
 
 ```dart
 // Simple main

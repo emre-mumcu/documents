@@ -34,7 +34,8 @@ Your [Flutter Development Environment](https://docs.flutter.dev/get-started/inst
 ```bat   
     flutter doctor
 ```    
-    When the flutter doctor command returns an error, it could be for Flutter, VS Code, Android Studio, the connected device, or network resources. If the flutter doctor command returns an error for any of these components, run it again with the verbose flag.
+When the flutter doctor command returns an error, it could be for Flutter, VS Code, Android Studio, the connected device, or network resources. If the flutter doctor command returns an error for any of these components, run it again with the verbose flag.
+
 ```bat    
     flutter doctor -v
 ```
