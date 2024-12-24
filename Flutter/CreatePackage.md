@@ -31,7 +31,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 ```
 
 2. Create a Flutter app in the `example/` directory to demonstrate how to use your package.
@@ -68,9 +67,14 @@ Log in to your pub.dev account:
 dart pub login
 ```
 
+Logout:
+
+```bash
+dart pub logout
+```
+
 7. Publish your package
 
 ```bash
 dart pub publish
 ```
-
