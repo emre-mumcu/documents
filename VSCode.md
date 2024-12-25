@@ -1,3 +1,10 @@
+Remove All Comments:
+Regexp: #.*
+
+Remove All Empty Lİnes:
+Regexp: ^$\n
+
+
 Toggle Integrated Terminal: Ctrl+Shift+T
 Toogle View Panel : Cmd+J
 
