@@ -76,3 +76,182 @@ OutlinedButton.icon(
         foregroundColor: Colors.white
     )
 )
+
+# Navigation 1
+
+onPressed: () { }
+
+```dart
+// quiz.dart
+// state + state manipulation
+import 'package:flutter/material.dart';
+
+class Quiz extends StatefulWidget {
+    const Quiz({super.key});
+
+    @override
+    State<Quiz> createState() {
+        return _QuizSate();
+    }
+}
+
+// starts from _ makes private
+class _QuizSate extends State<Quiz> {
+
+    Widget? activeSCreen;
+
+    @override
+    void initState() { // Extra initialization, will executed ONCE, will execute before the build method
+        activeSCreen = const StartScreen(switchScreen);
+        super.initState();
+    }
+
+    
+
+    switchScreen() {
+        // flutter will re-execute build method 
+        setState(
+            () {
+                activeSCreen = const QuestionScreen();
+            }
+        );
+    }
+
+    @override
+    Widget build(context) {
+        return MaterialApp(
+            child: activeSCreen
+        )
+    }
+}
+
+```
+
+```dart
+
+// questions_screen.dart
+
+import 'package:flutter/material.dart';
+
+class QuestionScreen extends StatefulWidget {
+    const QuestionScreen({super.key});
+
+    @override
+    State<QuestionScreen> createState() {
+        return _QuestionScreenSate();
+    }
+}
+
+// starts from _ makes private
+class _QuestionScreenSate extends State<QuestionScreen> {
+    @override
+    Widget build(context) {
+        return Text()
+    }
+}
+
+```
+
+```dart
+// start_screen.dart
+
+import 'package:flutter/material.dart';
+
+class StartScreen extends StatelessWidget {
+    const StartScreen(this.switchScreenFn, {super.key});
+
+    final void Function() switchScreenFn;
+
+    @override
+    Widget build(context) {
+        return Center(
+            child: OutlinedButton(
+                onPressed: () {
+                    switchScreenFn();
+                }
+                // or
+                onPreesed: switchScreenFn
+            )
+        )
+    }
+}
+
+
+
+```
+
+# Navigation 2
+
+onPressed: () { }
+
+```dart
+// quiz.dart
+// state + state manipulation
+import 'package:flutter/material.dart';
+
+class Quiz extends StatefulWidget {
+    const Quiz({super.key});
+
+    @override
+    State<Quiz> createState() {
+        return _QuizSate();
+    }
+}
+
+// starts from _ makes private
+class _QuizSate extends State<Quiz> {
+
+    var activeSCreen = 'start-screen';
+
+    switchScreen() {
+        // flutter will re-execute build method 
+        setState(
+            () {
+                activeSCreen = 'question-screen';
+            }
+        );
+    }
+
+    @override
+    Widget build(context) {
+        return MaterialApp(
+            child: activeSCreen== 'start-screen' ?
+                StartScreen(switchScreen) : const QuestionScreen()
+                ;
+        )
+    }
+}
+
+```
+
+```dart
+// start_screen.dart
+
+import 'package:flutter/material.dart';
+
+class StartScreen extends StatelessWidget {
+    const StartScreen(this.switchScreenFn, {super.key});
+
+    final void Function() switchScreenFn;
+
+    @override
+    Widget build(context) {
+        return Center(
+            child: OutlinedButton(
+                onPressed: () {
+                    switchScreenFn();
+                }
+                // or
+                onPreesed: switchScreenFn
+            )
+        )
+    }
+}
+
+
+
+```
+
+
+# Navigation 3
+

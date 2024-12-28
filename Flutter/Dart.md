@@ -69,6 +69,16 @@ class _MyStatefullWidgetState extends State<MyStatefullWidget> {
 
 Since the build method is overriden in ClassState, it will be called whenever there is a change in the variables associated with the Widgets present in it and the whole widget will be redrawn once again. In order to notify the state change event, we need to call `setState()` method that will trigger the build method.
 
+## Stateful Widget Lifecycle:
+
+Every Flutter Widget has a built-in lifecycle: A collection of methods that are automatically executed by Flutter (at certain points of time).
+
+There are three extremely important stateful widget lifecycle methods you should be aware of:
+
+1. initState(): Executed by Flutter when the StatefulWidget's State object is initialized
+2. build(): Executed by Flutter when the Widget is built for the first time AND after setState() was called
+3. dispose(): Executed by Flutter right before the Widget will be deleted (e.g., because it was displayed conditionally)
+
 # Constructor Functions
 
 Accepting Positional & Named arguments
@@ -167,8 +177,37 @@ class StartScreen extends StatelessWidget {
 }
 ```
 
-# fff 
+# Using "if" Statements In Lists 
 
+in Dart, you may also use if inside of lists to conditionally add items to lists:
+
+final myList = [
+  1,
+  2,
+  if (condition)
+    3
+];
+
+You can also specify an else case - an alternative value that may be inserted into the list if condition is not met:
+
+final myList = [
+  1,
+  2,
+  if (condition)
+    3
+  else
+    4
+];
+
+Alternatively, you could, for example, also work with a ternary expression:
+
+final myList = [
+  1,
+  2,
+  condition ? 3 : 4
+];
+
+# ff
 
 
 
