@@ -220,7 +220,30 @@ Start App with Debugging mode. Add breakpoints.
 Flutter Developer Tools:
 VSCode: Open command palette and search Flutter: Open DevTools and select Oprn DevTools in Web Browser
 
+# Initializer Lists
 
+Initializer Lists can be used to initialize class properties with values that are NOT received as constructor function args.
+
+```dart
+const final uuid = Uuid();
+
+class Expense {
+    Expense({required this.title}) : id = uuid.v4();
+
+    final String id;
+    final String title;
+}
+```
+
+# Enums
+
+```dart
+enum Category { cat1, cat2, cat3 }
+
+final Category category;
+```
+
+# ss
 
 
 

@@ -8,3 +8,4 @@ flutter pub add flutter_rating_bar
 flutter pub add flutter_widget_from_html_core
 flutter pub add animations
 flutter pub add url_launcher
+flutter pub add uuid
