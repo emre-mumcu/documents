@@ -207,7 +207,72 @@ final myList = [
   condition ? 3 : 4
 ];
 
-# ff
+# Using "for" Loops In Lists
+
+Just as you can also use the if keyword inside of lists (to add elements conditionally), you can also use the for keyword to add multiple items into a list:
+
+final numbers = [5, 6];
+final myList = [
+  1,
+  2,
+  for (final num in numbers)
+    num
+];
+
+When used in a list, it's essentially an alternative to the spread operator (...):
+
+final numbers = [5, 6];
+final myList = [
+  1,
+  2,
+  ...numbers
+];
+
+It can be useful in scenarios where values must be transformed before being added to a list - the for ... in loop can then be used instead of map() + spread operator:
+
+final numbers = [5, 6];
+final myList = [
+  1,
+  2,
+  ...numbers.map((n) {
+    return n * 2; 
+  }) // adds 10 and 12
+];
+
+can be replaced with:
+
+final numbers = [5, 6];
+final myList = [
+  1,
+  2,
+  for (final num in numbers)
+    num * 2 // adds 10 and 12
+];
+
+
+# _ClassName
+
+Leading _ at the beginning of the class name makes class private.
+Leading _ at the name of other elements also makes them (properties, methods) private.
+
+# Getters
+
+```dart
+List<Map<String, Object>> get summaryData {
+    final List<Map<String, Object>> summary = [];
+    // ...
+    return summaryData;
+}
+```
+
+# Arrow Functions
+
+```dart
+// () {}; Anonymous Function
+// () => true; Arrow Function
+
+```
+
 
 
 

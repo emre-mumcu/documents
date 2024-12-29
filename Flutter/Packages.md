@@ -1,5 +1,6 @@
 # Some Useful Packages
 
+flutter pub add google_fonts
 flutter pub add flutter_svg
 flutter pub add form_field_validator
 flutter pub add cached_network_image

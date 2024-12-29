@@ -15,6 +15,7 @@ Container(
         end: Alignment.bottomRight,
         child: MyWidget(),
     ),
+    margin: EdgeInsets...
 ),
 ```
 
@@ -27,6 +28,11 @@ In Center widgest, child widgets have mainAxisSize: MainAxisSize.min etc. to com
 # Column - Row Widgets
 
 Supports multiple widgets
+
+Column(    
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+)
 
 # Image Widgets
 
@@ -49,6 +55,9 @@ way 2:
 # SizedBox Widget
 
 const SizedBox(height: XX)
+width: double.infinity -> entire width
+height: 300
+SizedBox cuts out the content which is beyond its size.
 
 # Text Widget
 
@@ -254,4 +263,82 @@ class StartScreen extends StatelessWidget {
 
 
 # Navigation 3
+
+# CustomButton
+
+```dart
+class AnswerButton extens StatelessWidget 
+{
+    // Positional Arguments
+    const AnswerButton(this.text, this.onTap, {super.key});
+
+    // Named Arguments (named arguments are optional by default)
+    const AnswerButton({super.key, required this.text, required this.onTap});
+
+    final String text;
+    final void Function() onTap;
+
+    @override
+    Widget build(BuildContext context) {
+        return ElevatedButton(
+            onPressed: () {},
+            // style: ElevatedButton.styleFrom(),
+            style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.all(10),                
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40),                
+                backgroundColor: ...,
+                foregroundColor: ...,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40),
+                ),
+            ),
+            child: Text(text),
+        );
+    }
+}
+
+// Use:
+AnswerButton('', () {}),
+AnswerButton(text: '', onTap: () {}),
+
+```
+
+# Spreading Values (...)
+
+```dart
+const numbers = [1,2,3];
+
+const moreNumbers = [numbers, 4]; // [[1,2,3],4]
+const moreNumbers = [...numbers, 4]; // [1,2,3,4]
+
+
+```
+
+# Google Fonts
+
+flutter pub add google_fonts
+
+import 'package:google_fonts/google_fonts.dart';
+
+Text('', style: GoogleFonts.lato(
+    color: 
+    fontSize:
+    fontWeight:
+)),
+
+# Expanded Widget
+
+Expanded widgets aligns its childs widgets size to its parent flex widget size.
+
+Row -> Expanded -> Column
+
+Max width of a Column is screen width and max height of a Row is screen height.
+
+# SingleChildScrollView
+
+SizedBox -> SingleChildScrollView
+
+
+
+
 
