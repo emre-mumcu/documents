@@ -273,6 +273,18 @@ List<Map<String, Object>> get summaryData {
 
 ```
 
+# Debugging
+
+Open panel in VSCode:
+View -> Appearance -> Panel
+and select DebugConsole
+
+Debug Mode:
+Start App with Debugging mode. Add breakpoints.
+
+Flutter Developer Tools:
+VSCode: Open command palette and search Flutter: Open DevTools and select Oprn DevTools in Web Browser
+
 
 
 
