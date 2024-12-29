@@ -257,6 +257,8 @@ LEMP is an open-source web application stack used to develop web applications. T
 
 # 2.1. Install Nginx Web Server
 
+curl -4 icanhazip.com
+
 Nginx is a lightweight application that can be used as either a web server or reverse proxy. You should have a regular, non-root user with sudo privileges configured on your server.
 
 ```bash
@@ -271,6 +273,11 @@ sudo systemctl restart nginx
 sudo systemctl reload nginx
 sudo systemctl disable nginx
 
+sudo apt update
+sudo apt install nginx
+
+
+
 # Get Version
 nginx -v
 # Validate Configuration
@@ -283,6 +290,14 @@ To make your pages available to the public, you will have to edit your firewall 
 firewall-cmd --permanent --zone=public --add-service=http 
 firewall-cmd --permanent --zone=public --add-service=https
 firewall-cmd --reload
+
+sudo ufw app list
+sudo ufw allow 'Nginx HTTP'
+
+sudo ufw status
+sudo ufw reload
+
+systemctl status nginx
 ```
 
 We need to make the user Nginx the owner of the web directory. By default, it's owned by the root user or the user that perform dnf install.
@@ -393,6 +408,60 @@ Before you can test the changes from your browser, you'll need to update your se
 chcon -vR system_u:object_r:httpd_sys_content_t:s0 /inetpub/your_domain/
 ```
 
+## Setting Up Server Blocks
+
+When using the Nginx web server, server blocks (similar to virtual hosts in Apache) can be used to encapsulate configuration details and host more than one domain from a single server.
+
+Nginx on Ubuntu 20.04 has one server block enabled by default that is configured to serve documents out of a directory at /var/www/html. While this works well for a single site, it can become unwieldy if you are hosting multiple sites. Instead of modifying /var/www/html, let’s create a directory structure within /var/www for our your_domain site, leaving /var/www/html in place as the default directory to be served if a client request doesn’t match any other sites.
+
+Create the directory for your_domain as follows, using the -p flag to create any necessary parent directories:
+
+> sudo mkdir -p /var/www/your_domain/html
+
+Next, assign ownership of the directory with the $USER environment variable:
+
+> sudo chown -R $USER:$USER /var/www/your_domain/html
+
+The permissions of your web roots should be correct if you haven’t modified your umask value, which sets default file permissions. To ensure that your permissions are correct and allow the owner to read, write, and execute the files while granting only read and execute permissions to groups and others, you can input the following command:
+
+> sudo chmod -R 755 /var/www/your_domain
+
+Next, create a sample index.html page using nano or your favorite editor:
+
+> sudo nano /var/www/your_domain/html/index.html
+
+Save and close the file by pressing Ctrl+X to exit, then when prompted to save, Y and then Enter.
+
+In order for Nginx to serve this content, it’s necessary to create a server block with the correct directives. Instead of modifying the default configuration file directly, let’s make a new one at /etc/nginx/sites-available/your_domain:
+
+> sudo nano /etc/nginx/sites-available/your_domain
+
+Paste in the following configuration block, which is similar to the default, but updated for our new directory and domain name:
+
+```json
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/your_domain/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name your_domain www.your_domain;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+```
+
+Next, let’s enable the file by creating a link from it to the sites-enabled directory, which Nginx reads from during startup:
+
+> sudo ln -s /etc/nginx/sites-available/your_domain /etc/nginx/sites-enabled/
+
+sudo nginx -t
+sudo systemctl restart nginx
+
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
 
 # 2.2. Install MariaDB Server
 
