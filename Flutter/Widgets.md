@@ -48,7 +48,7 @@ class _MyStatefullWidgetState extends State<MyStatefullWidget> {
   }
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold();
   }
 }
 ```
