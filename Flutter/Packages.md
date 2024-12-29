@@ -1,5 +1,6 @@
 # Some Useful Packages
 
+flutter pub add intl
 flutter pub add google_fonts
 flutter pub add flutter_svg
 flutter pub add form_field_validator

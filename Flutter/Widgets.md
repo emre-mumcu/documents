@@ -405,7 +405,223 @@ Max width of a Column is screen width and max height of a Row is screen height.
 
 SizedBox -> SingleChildScrollView
 
-# f
+# ListView Widget
+
+```dart
+// Not Efficient for long list
+ListView(children: ) 
+
+// Efficient for long list
+// items are built only when they are visible in the screen
+ListView.builder(
+    itemBuilder: (ctx, index) {
+        return ...
+    }
+)
+// or
+ListView.builder(
+    itemBuilder: (ctx, index) => Text('')
+)
+
+// sample
+
+final List<Expense> expenses;
+
+ListView.builder(
+    itemCount: expenses.length,
+    itemBuilder: (ctx, index) => Text(expenses[index].title)
+)
+
+// ListItem
+
+return Card(
+    child: Text('Title'),
+);
+
+ListView.builder(
+    itemCount: expenses.length,
+    itemBuilder: (ctx, index) => Card(),
+)
+
+// 
+
+Scaffold(
+    body: Column(
+        children: [
+            const Text('Title'),
+            Expanded(
+                child: ExpenseList()
+            )
+        ]
+    )
+)
+
+```
+
+# Card Widget
+
+```dart
+Card(
+    child: Padding(
+        padding: ,
+        child: Column(
+            children: [
+                Text(),
+                SizeBox(height: 4),
+                Row(
+                    children: [
+                        Text(),
+                        const Spacer(),
+                        Row(
+                            children: [
+                                Icon(Icons.alarm),
+                                const SizedBox(width: 8),
+                                Text(),
+                            ]
+                        ),
+                    ],
+                ),
+            ]
+        ),
+    ),
+),
+```
+
+# intl
+
+```dart
+const categoryIcons = {
+    Category.food: Icons.lunch_dining,
+    Category.travel: Icons.flight_taleoff,
+}
+
+Icon(categoryIcons[0]);
+
+import 'package:intl/intl.dart';
+
+final formatted = DateFormst.yMd();
+
+class Expense {
+    // ..
+
+    String get formattedDate {
+        return formatter.format(date);
+    }
+
+
+}
+```
+
+# Scaffold Widget
+
+```dart
+MaterialApp(
+    theme: ThemeData(useMaterial3: true),
+    home: Scaffold(
+        appBar: AppBar(
+            title: Text(),
+            actions: [
+                IconButton(
+                    icon: const Icon(Icons.add),
+                    onPressed: _open, // () {},
+                ),
+            ]
+        ),
+    )
+)
+
+void _open() {    
+}
+```
+
+# showModalBottomSheet
+
+```dart
+void _open() {
+    showModalBottomSheet(
+        context: context, builder: (ctx) {
+            return Text(''),
+        }
+    );
+}
+```
+
+# Context
+
+Context keeps metadata related with a widget.
+
+# TextField Widget
+
+```dart
+// way 1 handling text input
+var _text = '';
+
+void _saveText(String input) {
+_text = input;
+}
+
+TextField(
+    onChanged: _saveText,
+    maxLength: 50,
+    keyboardType: TextInputType.text,
+    decoration: InputDecoration(
+        label: Text(''),
+    ),
+),
+Row(
+    children: [
+        ElevatedButton(
+            onPressed: () {
+                print(_text);
+            },
+            child: Text('Save'),
+        )
+    ]
+)
+```
+
+```dart
+// way2 handling text input
+final _titleController = TextEditingController();
+
+// only state classes can implement dispose method
+@override
+void dispose() {
+    _titleController.dispose();
+    super.dispose();
+}
+
+TextField(
+    controller: _titleController,
+    maxLength: 50,
+    keyboardType: TextInputType.text,
+    decoration: InputDecoration(
+        label: Text(''),
+    ),
+),
+
+// print(_titleController.text);
+```
+
+# fff
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
