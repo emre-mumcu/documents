@@ -544,6 +544,9 @@ void _open() {
         }
     );
 }
+
+// Remove overlay:
+Navigator.pop(context);
 ```
 
 # Context
@@ -566,7 +569,7 @@ TextField(
     keyboardType: TextInputType.text,
     decoration: InputDecoration(
         label: Text(''),
-    ),
+    ),    
 ),
 Row(
     children: [
@@ -598,12 +601,35 @@ TextField(
     decoration: InputDecoration(
         label: Text(''),
     ),
+    prefixText: '\$',
 ),
 
 // print(_titleController.text);
 ```
 
-# fff
+# DateInput
+
+```dart
+// Row in a Row or Column in a Column requires an Expanded widget to make layout smooth
+Expanded(
+    child: Row(
+        children: [
+            Text('Selected Date'),
+            IconButton(
+                icon: Icon(Icons.calendar_month),
+                onPressed: getDate,
+            ),
+
+        ]
+    )
+)
+
+void getDate() {
+    showDatePicker(context: context, initialDate: initialDate, firstDate: firstDate, lastDate: lastDate);
+}
+
+```
+
 
 
 
