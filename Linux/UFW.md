@@ -8,6 +8,17 @@ To check if ufw is enabled, run:
 $ sudo ufw status
 $ sudo ufw disable
 $ sudo ufw enable
+$ sudo ufw reload
+```
+
+## Allow a Port
+
+```zsh
+$ sudo ufw allow 8080
+$ sudo ufw allow 8080/tcp
+$ sudo ufw allow 8080/udp
+$ sudo ufw allow 5000:6000/tcp
+$ sudo ufw allow from 192.168.1.100 to any port 8080
 ```
 
 ## Allow an IP Address
