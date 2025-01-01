@@ -539,6 +539,7 @@ void _open() {
 ```dart
 void _open() {
     showModalBottomSheet(
+        useSafeArea: true,
         isScrollControled: true, // modal gets full height
         context: context, builder: (ctx) {
             return Text(''),
@@ -708,6 +709,7 @@ Dismissable(
 # ScaffoldMessenger Widget
 
 ```dart
+ScaffoldMessenger.of(context).clearSnackBars();
 ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
         duration: Duration(seconds: 3),
@@ -720,7 +722,162 @@ ScaffoldMessenger.of(context).showSnackBar(
 ),
 ```
 
-# dd
+# Theming
+
+```dart
+void main() {
+    return App(
+        MaterialApp(            
+            // theme: ThemeData(useMaterial3: true), // This creates ThemeData from scratch
+            theme: ThemeData().copyWith(useMaterial3: true, //...), // This overrides only provided styles
+            home:
+        ),
+    ),
+}
+```
+
+## ColorScheme && Text Styles
+```dart
+void main() {
+    return App(
+        MaterialApp(
+            themeMode: ThemeMode.system, // default            
+            theme: ThemeData().copyWith(
+                // with colorScheme you can specify one color and flutter can infer and create other shades or variations of colors
+                colorScheme: kColorScheme,
+                appBarTheme: AppBarTheme.copyWith(
+                    backgroundColor.kColorScheme.onPrimaryContainer,
+                    foregroundColor: kColorScheme.primaryContainer,
+                ),
+                cardTheme: CardTheme.copyWith(
+                    color: kColorScheme.xxx,
+                    margin: EdgeInsets.all(16),
+                    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                ),
+                elevatedButtonTheme: ElevatedButtonThemeData(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: kColorScheme.primaryContainer,
+                    ),
+                ),
+                textTheme: ThemeData().textTheme.copyWith(
+                    // titleLarge: ThemeData().textTheme.titleLarge.copyWith(),
+                    titleLarge: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14
+                    ),
+                ),
+            ), 
+            darkTheme: ThemeData.dark().copyWith(
+                brightness: Brightness.dark,
+                colorScheme: kDarkColorScheme,
+            ),           
+        ),
+    ),
+}
+
+var kColorScheme = ColorScheme().fromSeed(seedColor: const Color.fromARGB(255,69,59,181));
+var kDarkColorScheme = ColorScheme().fromSeed(seedColor: const Color.fromARGB(255,5,99,125));
+```
+
+## Using ThemeData in Widgets
+
+```dart
+// custom style
+Text('', style: TextStyle(),)
+
+// ThemeData style
+Text('', style: Theme.of(context).textTheme.titleLarge,),
+Text('', style: Theme.of(context).textTheme.titleLarge.copyWith(),),
+
+Container(
+    color: Theme.of(context).colorScheme.error.withOpacity(0,75),
+    margin: 
+),
+```
+
+## Dark Mode
+
+```dart
+
+```
+
+
+# FractionallySizedBox
+
+Document Here
+
+# Responsive and Adaptive Apps
+
+```dart
+// Lock Device Orientation:
+
+import 'package:flutter/services.dart';
+
+void main() {
+    WidgetsFlutterBinding.ensureInitialized();
+    SystemChrome.setPreferredOrientations([
+        // Allow only specified orientations
+        DeviceOrientation.portraitUp,
+    ]).then((fn) {
+        runApp();
+    });    
+}
+```
+
+# Widget Size Constraints
+
+**Scaffold**
+height-> max. device height
+width-> max. device width
+
+**Column**
+height-> as much as possible, unconstraint -> INFINITY
+width-> as much as needed by children
+
+**Row**
+height-> as much as needed by children
+width-> as much as possible, unconstraint -> INFINITY
+
+**Expanded**
+height-> as much as available
+width-> as much as available
+
+# Screen Overlays & Soft Keyboard
+
+```dart
+// To get overlaying elements over UI
+final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
+```
+
+# LayoutBuilder Widget
+
+```dart
+return LayoutBuilder(builder: (ctx, constraints) {
+    final width = constraints.width;
+    return SizedBox(
+        child: Column(
+            children: [
+                if(width>=600)
+                    Row(children: [
+
+                    ],),
+            ],
+        ),
+    ),
+}),
+```
+
+# showCupertinoDialog
+
+```dart
+showCupertinoDialog(context: context, builder: (ctx) => CupertinoAlertDialog(
+    
+),), 
+```
+
+# ff
+
+
 
 
 

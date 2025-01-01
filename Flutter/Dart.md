@@ -245,9 +245,41 @@ final Category category;
 
 # Future Object
 
+Document here...
 
+# for - in
 
-# ss
+```dart
+for (final expense in expenses) {
+}
+```
+
+# Named Constructor
+
+```dart
+class ExpenseBucket {
+    const ExpenseBucket({
+        required this.category, required this.expenses
+    });
+
+    // Named constructor function:
+    ExpenseBucket.forCategory(List<Expenses> allExpenses, this.category) 
+        : expenses = allExpenses.where(e => e.category == category).toList();
+
+    final Category category;
+    final List<Expense> expenses;
+}
+```
+
+# MediaQuery
+
+```dart
+final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+var width = MediaQuery.of(context).size.width;
+var platform = Platform.IsIOS;
+```
+
+# gg
 
 
 
