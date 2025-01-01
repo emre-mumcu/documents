@@ -539,6 +539,7 @@ void _open() {
 ```dart
 void _open() {
     showModalBottomSheet(
+        isScrollControled: true, // modal gets full height
         context: context, builder: (ctx) {
             return Text(''),
         }
@@ -624,11 +625,108 @@ Expanded(
     )
 )
 
+// way 1
 void getDate() {
-    showDatePicker(context: context, initialDate: initialDate, firstDate: firstDate, lastDate: lastDate);
+    final now = DateTime.now();
+    final first = DateTime(nom.year-1, now.month, nom.day);    
+    showDatePicker(
+        context: context, initialDate: now, firstDate: first, lastDate: now
+    ).then( (value) {
+
+    },);
 }
 
+// way 2
+void getDate() async {
+    final now = DateTime.now();
+    final first = DateTime(nom.year-1, now.month, nom.day);    
+    final pickedDate = await showDatePicker(
+        context: context, initialDate: now, firstDate: first, lastDate: now
+    );
+    print(pickedDate);
+    setState(() {
+        _selectedDate = pickedDate;
+    });
+}
 ```
+
+# DropdownButton Widget
+
+```dart
+MyEnum _selectedEnum = MyEnum.item1;
+
+DropdownButton(
+    value: _selectedEnum,
+    item: MyEnum.values.map(
+        (item) => DropdownMenuItem(
+            value: item,
+            child: Text(item.name),
+        ) 
+    ).toList(), 
+    onChanged: (value) {
+        if(value == null) return;
+        setState(() {            
+            _selectedEnum = value;
+        }); 
+    } 
+),
+```
+
+# Spacer Widget
+
+# showDialog
+
+```dart
+showDialog(context: context, builder: (ctx) => 
+    AlertDialog(
+        title: Text('Invalid'),
+        content: Text('Please read this alert!'),
+        actions: [
+            TextButton(
+                onPressed: () {
+                    Navigator.pop(ctx);
+                },
+                child: Text('OK');
+            ),
+        ],
+    ),
+);
+```
+
+# Dismissable Widget
+
+```dart
+Dismissable(
+    key: ValueKey(index),
+    child: ,
+    onDismissed: (direction) {
+        // index can be used here
+    }
+)
+```
+
+# ScaffoldMessenger Widget
+
+```dart
+ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+        duration: Duration(seconds: 3),
+        content: Text(''),
+        action: SnackbarAction(
+            label: 'Undo',
+            onPressed: () {},
+        )
+    ),
+),
+```
+
+# dd
+
+
+
+
+
+
 
 
 
