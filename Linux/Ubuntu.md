@@ -727,6 +727,27 @@ server {
 
 # 2.5. CERTBOT Setup
 
+## 2.5.1. Ubuntu (Debian)
+
+You'll need to install snapd if it is not already installed.
+
+To install Certbot:
+sudo snap install --classic certbot
+
+Execute the following instruction on the command line on the machine to ensure that the certbot command can be run:
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+
+Run this command to get a certificate and have Certbot edit your nginx configuration automatically to serve it, turning on HTTPS access in a single step.
+sudo certbot --nginx
+
+If you're feeling more conservative and would like to make the changes to your nginx configuration by hand, run this command.
+sudo certbot certonly --nginx
+
+The Certbot packages on your system come with a cron job or systemd timer that will renew your certificates automatically before they expire. You will not need to run Certbot again, unless you change your configuration. You can test automatic renewal for your certificates by running this command:
+sudo certbot renew --dry-run
+
+## 2.5.2. Rocky Linux (RedHat)
+
 ```bash
 dnf install epel-release mod_ssl -y
 dnf install -y certbot python3-certbot-nginx
