@@ -8,7 +8,7 @@ The default build configuration is Release, which is appropriate for a deployed 
 2. Choose View > Terminal from the main menu.
 3. Run the following command in your terminal to publish the application:
 
-> dotnet publish --configuration Release --output ./publish
+    > dotnet publish --configuration Release --output ./publish
 
 This generates the compiled application files in the specified ./publish directory.
 
