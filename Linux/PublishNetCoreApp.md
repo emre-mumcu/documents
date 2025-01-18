@@ -1,10 +1,25 @@
-# Publishing and hosting an ASP.NET Core MVC application on Ubuntu Linux
+# Publishing and hosting an ASP.NET Core MVC application on Ubuntu with Nginx Reverse Proxy
 
 ## 1. Configure the Application
 
 Kestrel is great for serving dynamic content from ASP.NET Core. However, the web serving capabilities aren't as feature rich as servers such as IIS, Apache, or Nginx. A reverse proxy server can offload work such as serving static content, caching requests, compressing requests, and HTTPS termination from the HTTP server.
 
-For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Because requests are forwarded by reverse proxy, use the Forwarded Headers. The middleware updates the Request.Scheme, using the X-Forwarded-Proto header, so that redirect URIs and other security policies work correctly.
+ASP.NET Core MVC application will run behind a single instance Nginx reverse proxy, which runs on the same server, alongside the HTTP server (Kestrel). 
+
+Since the application will not be serving http requests directly, we will not use HTTPS redirection and add a configuration for Kestrel:
+
+```cs
+#if !DEBUG
+    builder.WebHost.ConfigureKestrel((context, serverOptions) =>
+    {
+        // serverOptions.ListenAnyIP(5055, listenOptions => { listenOptions.UseHttps(); });
+        serverOptions.ListenAnyIP(5055);
+    });
+
+#endif
+```
+
+Because requests will be forwarded by Nginx, we will configuree the Forwarded Headers in application so that redirect URIs and other security policies work correctly.
 
 Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing.
 
@@ -59,6 +74,8 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 dotnet publish
 ```
 
+Publish will be placed at `bin/Release/netX.X` folder by default.
+
 The default build configuration is Release, which is appropriate for a deployed site running in production. The output from the Release build configuration has minimal symbolic debug information and is fully optimized.
 
 By default, the publishing process creates a framework-dependent deployment, which is a type of deployment where the published application runs on a machine that has the .NET runtime installed. To run the published app you can use the *executable* file or run the `dotnet MyApp.dll` command from a command prompt.
@@ -67,7 +84,7 @@ By default, the publishing process creates a framework-dependent deployment, whi
 
 * `MyApp.exe` (MyApp on Linux or macOS) This is the framework-dependent executable version of the application. The file is operating-system-specific. You can run the app by using the executable. On Windows, enter `.\MyApp.exe` and press Enter. On Linux, enter `./MyApp` and press Enter.
 
-## 3. Install .NET Core Runtime (Ubuntu)
+## 3. Install .NET Core Runtime
 
 Install the SDK (which includes the runtime) if you want to develop .NET apps. Or, if you only need to run apps, install the Runtime. If you're installing the Runtime, we suggest you install the ASP.NET Core Runtime as it includes both .NET and ASP.NET Core runtimes.
 
@@ -93,7 +110,7 @@ dotnet --list-sdks
 dotnet --list-runtimes 
 ```
 
-## 4. Install Nginx (Ubuntu)
+## 4. Install Nginx
 
 Use apt-get to install Nginx. The installer creates a systemd init script that runs Nginx as daemon on system startup. 
 
@@ -204,3 +221,26 @@ If you have a firewall enabled, allow Nginx:
 ```
 sudo ufw allow 'Nginx Full'
 ```
+
+
+## 7. Transfer Application File
+
+You can use ssh in combination with scp (secure copy protocol) to transfer files to a remote server.
+
+Create a zip file (MyApp.zip) from the published application files.
+
+```
+scp /path/to/local/file username@remote_host:/path/to/remote/destination
+scp -P port_number /path/to/local/file username@remote_host:/path/to/remote/destination
+scp myfile.txt user@192.168.1.100:/home/user/
+
+Transfer an entire directory: Add the -r flag to copy directories recursively.
+scp -r /path/to/local/directory username@remote_host:/path/to/remote/destination
+
+scp -P XXXXX "C:\Users\emumc\Desktop\emremumcu.zip" root@1.1.1.1:/temp
+```
+
+
+
+
+
