@@ -63,6 +63,15 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
     ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
 });
 ```
+To add wwwroot to publish folder:
+
+```xml
+	<ItemGroup>
+		<None Include="wwwroot\**">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+```
 
 ## 2. Publish the Application
 
