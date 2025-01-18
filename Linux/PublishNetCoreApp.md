@@ -6,7 +6,9 @@
 2. Open Terminal. (View > Terminal)
 3. Run the following command in your terminal to publish the application:
 
-    > dotnet publish
+```
+dotnet publish
+```
 
 The default build configuration is Release, which is appropriate for a deployed site running in production. The output from the Release build configuration has minimal symbolic debug information and is fully optimized.
 
@@ -21,10 +23,10 @@ By default, the publishing process creates a framework-dependent deployment, whi
 Install the SDK (which includes the runtime) if you want to develop .NET apps. Or, if you only need to run apps, install the Runtime. If you're installing the Runtime, we suggest you install the ASP.NET Core Runtime as it includes both .NET and ASP.NET Core runtimes.
 
 Use the
-
-    > dotnet --list-sdks 
-    > dotnet --list-runtimes 
-
+```
+dotnet --list-sdks 
+dotnet --list-runtimes 
+```
 commands to see which versions are installed.
 
 Update your package index and install dependencies:
