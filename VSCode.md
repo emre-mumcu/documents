@@ -64,6 +64,9 @@ You can use quick fix to remove unused usings. Press (cmd+.) to open quick fix m
 * Toggle Line Comment		: shift + opt + S
 * Toggle Block Comment 		: shift + opt + A
 * Quick Fix				    : cmd + .
+* Toggle Single Line Comment    : Ctrl + ö
+* Format Document               : Shift+Alt+F
+* Formaty Selection             : Ctrl+K Ctrl+F
 
 # Token Color Customizations
 
