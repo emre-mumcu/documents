@@ -238,6 +238,9 @@ Transfer an entire directory: Add the -r flag to copy directories recursively.
 scp -r /path/to/local/directory username@remote_host:/path/to/remote/destination
 
 scp -P XXXXX "C:\Users\emumc\Desktop\emremumcu.zip" root@1.1.1.1:/temp
+
+temp# unzip emremumcu.zip -d /inetpub/
+
 ```
 
 
