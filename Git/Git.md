@@ -244,6 +244,9 @@ Git keeps track of updates to the tip of branches using a mechanism called refer
 % git commit -m “Second Commit”
 % git push -u origin main
 
+# Get Remote Branch
+% git config --get remote.origin.url
+
 # Deleting your credentials via the command line
 % git credential-osxkeychain erase
 host=github.com
