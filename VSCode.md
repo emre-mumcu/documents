@@ -1,3 +1,24 @@
+# To set up a code formatter for C# in Visual Studio Code (VS Code), follow these steps:
+
+Go to the Extensions View and search for C# and install the official C# extension by Microsoft.
+
+Open the Command Palette and yype and select "Preferences: Open Settings (JSON)." 
+
+Add the following setting to specify the default formatter for C#:
+
+```json
+"[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+}
+
+// Enable Format on Save (Optional)
+"editor.formatOnSave": true
+```
+
+Save the file.
+
+# Find & Replace
+
 Remove All Comments:
 Regexp: #.*
 
