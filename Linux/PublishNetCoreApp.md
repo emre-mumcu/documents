@@ -1,6 +1,55 @@
-# Publishing and hosting a .NET Core MVC application on Ubuntu Linux
+# Publishing and hosting an ASP.NET Core MVC application on Ubuntu Linux
 
-## 1. Publish the Application
+## 1. Configure the Application
+
+Kestrel is great for serving dynamic content from ASP.NET Core. However, the web serving capabilities aren't as feature rich as servers such as IIS, Apache, or Nginx. A reverse proxy server can offload work such as serving static content, caching requests, compressing requests, and HTTPS termination from the HTTP server.
+
+For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Because requests are forwarded by reverse proxy, use the Forwarded Headers. The middleware updates the Request.Scheme, using the X-Forwarded-Proto header, so that redirect URIs and other security policies work correctly.
+
+Forwarded Headers Middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing.
+
+```cs
+var app = builder.Build();
+
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | 
+    ForwardedHeaders.XForwardedProto | 
+    ForwardedHeaders.XForwardedHost
+});
+
+services.Configure<ForwardedHeadersOptions>(options => {
+  options.ForwardedHeaders = 
+    ForwardedHeaders.XForwardedFor | 
+    ForwardedHeaders.XForwardedProto | 
+    ForwardedHeaders.XForwardedHost;
+});
+```
+
+If no ForwardedHeadersOptions are specified to the middleware, the default headers to forward are None.
+
+Proxies running on loopback addresses (127.0.0.0/8, [::1]), including the standard localhost address (127.0.0.1), are trusted by default. If other trusted proxies or networks within the organization handle requests between the internet and the web server, add them to the list of KnownProxies or KnownNetworks with ForwardedHeadersOptions. 
+
+```cs
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure forwarded headers
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    // options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto | ForwardedHeaders.XForwardedHost;
+    options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
+});
+
+var app = builder.Build();
+
+// app.UseForwardedHeaders(); 
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+```
+
+## 2. Publish the Application
 
 1. Start Visual Studio Code. 
 2. Open Terminal. (View > Terminal)
@@ -18,65 +67,61 @@ By default, the publishing process creates a framework-dependent deployment, whi
 
 * `MyApp.exe` (MyApp on Linux or macOS) This is the framework-dependent executable version of the application. The file is operating-system-specific. You can run the app by using the executable. On Windows, enter `.\MyApp.exe` and press Enter. On Linux, enter `./MyApp` and press Enter.
 
-## 2. Install .NET Core Runtime on Ubuntu Linux
+## 3. Install .NET Core Runtime (Ubuntu)
 
 Install the SDK (which includes the runtime) if you want to develop .NET apps. Or, if you only need to run apps, install the Runtime. If you're installing the Runtime, we suggest you install the ASP.NET Core Runtime as it includes both .NET and ASP.NET Core runtimes.
 
-Use the
+.NET is available in the Ubuntu package manager feeds. The Microsoft package repository no longer contains .NET packages for Ubuntu.
+
+```
+To install the .NET SDK, run the following commands:
+sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-9.0
+
+To install the ASP.NET Core Runtime, run the following commands:
+sudo apt-get update && \
+  sudo apt-get install -y aspnetcore-runtime-9.0
+
+To install the .NET Runtime, run the following commands:  
+sudo apt-get install -y dotnet-runtime-9.0
+```
+
+You can use the following commands to see which versions are installed.
+
 ```
 dotnet --list-sdks 
 dotnet --list-runtimes 
 ```
-commands to see which versions are installed.
 
-Update your package index and install dependencies:
+## 4. Install Nginx (Ubuntu)
 
-> sudo apt update
-> sudo apt install -y wget apt-transport-https
+Use apt-get to install Nginx. The installer creates a systemd init script that runs Nginx as daemon on system startup. 
 
-Add the Microsoft package repository:
+```shell
+# install nginx
+sudo apt install nginx
 
-> wget https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-> sudo dpkg -i packages-microsoft-prod.deb
+# enable nginx service
+sudo systemctl enable nginx
 
-Install the .NET Runtime
+# start nginx
+sudo service nginx status
+sudo service nginx start
+```
 
-> sudo apt update
-> sudo apt install -y aspnetcore-runtime-9.0
+## 5. Create Kestrel Service
 
-## 3. Configure the Application
+Create a new systemd service file for your application.
 
-Run the Application Manually:
-
-> dotnet myapp.dll
-
-By default, the application listens on http://localhost:5000 or http://localhost:5001 for HTTPS.  
-
-Verify it works locally by accessing the URL using curl or your browser.
-
-## 4. Set Up a Reverse Proxy with Nginx
-
-
-
-
-# 2.4. Setup Dotnet & Kestrel Service
-
-**Dotnet Install**
-
-dnf install -y dotnet-runtime-7.0
-dnf install -y aspnetcore-runtime-7.0
-dnf install -y dotnet-runtime-7.0
-
-**Kestrel Service**
-
-```bash
+```
 vi /etc/systemd/system/kestrel-myapp.service
 ```
 
 ```
 [Unit]
 Description=My application description
- 
+After=network.target
+
 [Service]
 WorkingDirectory=/inetpub/myapp
 ExecStart=/usr/lib64/dotnet/dotnet /inetpub/myapp/myapp.dll
@@ -94,40 +139,31 @@ WantedBy=multi-user.target
 ```
 
 ```bash
-systemctl enable myapp.service
-systemctl daemon-reload
 systemctl reset-failed
-systemctl start myapp.service
-systemctl status myapp.service
+systemctl daemon-reload
+
+systemctl enable myapp.service
+systemctl start myapp
+systemctl status myapp
 
 systemctl list-units kestrel-* --all
 systemctl list-unit-files kestrel-*
 systemctl status kestrel-*
 ```
 
-**ASP.NET Application Configuration**
 
-```csharp
-services.Configure<ForwardedHeadersOptions>(options => {
-  options.ForwardedHeaders = 
-    ForwardedHeaders.XForwardedFor | 
-    ForwardedHeaders.XForwardedProto | 
-    ForwardedHeaders.XForwardedHost;
-});
-  
-app.UseRouting(); 
-app.UseForwardedHeaders(); 
-app.UseAuthentication();
+## 7. Configure Nginx
+
+Create a new configuration file for your application.
+
+Create a `/etc/nginx/sites-available/myapp` file with a text editor, and replace the contents with the following snippet:
+
 ```
-
-**Nginx Configuration**
-
-```json
 server {
-    listen        80;
-    server_name   example.com www.example.com;
+    listen 80;
+    server_name mumcu.net www.mumcu.net;
     location / {
-        proxy_pass         http://localhost:5000;
+        proxy_pass         http://127.0.0.1:5000/;
         proxy_http_version 1.1;
         proxy_set_header   Upgrade $http_upgrade;
         proxy_set_header   Connection keep-alive;
@@ -140,88 +176,31 @@ server {
 ```
 
 
-
-
-Install Nginx
-
-> sudo apt install nginx
-
-Create a new configuration file for your application
-
-> sudo nano /etc/nginx/sites-available/myapp
-
-Add the following configuration
-
-```text
-server {
-    listen 80;
-    server_name yourdomain.com;
-
-    location / {
-        proxy_pass http://localhost:5000;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection keep-alive;
-        proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
-    }
-}
+After creating the configuration file, use the following command to create the symlink to enable the configuration:
 ```
-
-Enable the configuration
-
-> sudo ln -s /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/myapp /etc/nginx/sites-enabled/
+```
 
 Test and restart Nginx:
-
-> sudo nginx -t
-> sudo systemctl restart nginx
-
-## 5. 5. Run the Application as a Service
-
-Create a systemd service file:
-
-> sudo nano /etc/systemd/system/myapp.service
-
-Add the following content:
-
-```text
-[Unit]
-Description=My .NET Core MVC Application
-After=network.target
-
-[Service]
-WorkingDirectory=/var/www/myapp
-ExecStart=/usr/bin/dotnet /var/www/myapp/myapp.dll
-Restart=always
-RestartSec=10
-SyslogIdentifier=myapp
-User=www-data
-Environment=ASPNETCORE_ENVIRONMENT=Production
-
-[Install]
-WantedBy=multi-user.target
-
+```
+sudo nginx -t
+sudo systemctl restart nginx
 ```
 
-Reload the systemd daemon:
+When no server_name matches, Nginx uses the default server.  If no default server is defined, the first server in the configuration file is the default server. As a best practice, add a specific default server that returns a status code of 444 in your configuration file. 
 
-> sudo systemctl daemon-reload
-
-Start and enable the service:
-
-> sudo systemctl start myapp
-> sudo systemctl enable myapp
-
-Check the status
-
-> sudo systemctl status myapp
+```
+server {
+    listen   80 default_server;
+    # listen [::]:80 default_server deferred;
+    return   444;
+}
+```
 
 ## 6. Configure Firewall (Optional)
 
 If you have a firewall enabled, allow Nginx:
 
-> sudo ufw allow 'Nginx Full'
-
-
-
+```
+sudo ufw allow 'Nginx Full'
+```
