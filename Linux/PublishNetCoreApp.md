@@ -128,6 +128,15 @@ sudo service nginx start
 
 ## 5. Create Kestrel Service
 
+Create a new user for kestrel service:
+
+```bash
+# Use one of the following commands to create a kestrel user without login
+useradd -s /usr/sbin/nologin -r -M -d /dev/null kestrel 
+useradd -s /bin/false -r kestrel
+useradd -s /usr/sbin/nologin -r -M kestrel
+```
+
 Create a new systemd service file for your application.
 
 ```
@@ -141,7 +150,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/inetpub/myapp
-ExecStart=/usr/lib64/dotnet/dotnet /inetpub/myapp/myapp.dll
+ExecStart=/usr/bin/dotnet /inetpub/myapp/myapp.dll
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
@@ -243,6 +252,17 @@ temp# unzip emremumcu.zip -d /inetpub/
 
 ```
 
+We need to make the user Nginx the owner of the web directory. By default, it's owned by the root user or the user that perform dnf install.
+
+```bash
+chown nginx:nginx /usr/share/nginx/html -R
+chown nginx:nginx /inetpub -R
+```
+
+
+
+curl -4 serverip
+$ curl -4 icanhazip.com
 
 
 
