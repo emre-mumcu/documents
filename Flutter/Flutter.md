@@ -42,6 +42,14 @@ When the flutter doctor command returns an error, it could be for Flutter, VS Co
 
 ## Configuration
 
+Get Flutter Global Config Values:
+
+flutter config --list
+
+To reset configurations to their default state, you can delete or modify the ~/.flutter_settings file, or run:
+
+flutter config --clear-features
+
 You can configure flutter using the following commands:
 
 ```bat
@@ -51,7 +59,12 @@ flutter config --jdk-dir=<JDK_DIRECTORY>
 
 flutter config --android-sdk "C:\android-sdk"
 flutter config --android-studio-dir "C:\android-studio"
-flutter config --jdk-dir="C:\Java\jdk-23\bin"
+flutter config --jdk-dir="C:\Java\jdk-23\"
+
+flutter config --enable-linux-desktop
+flutter config --enable-macos-desktop
+flutter config --enable-windows-desktop
+flutter config --no-enable-web
 ```
 
 Or add a new environment variable ANDROID_HOME with your Android SDK path.
