@@ -1,3 +1,20 @@
+PATH
+C:\Android\java\jdk-21
+
+
+ANDROID_HOME
+C:\Users\AppData\Local\Android\Sdk
+
+Add the following entries to PATH:
+%ANDROID_HOME%\tools
+%ANDROID_HOME%\tools\bin
+%ANDROID_HOME%\platform-tools
+
+JAVA_HOME
+C:\Android\java\jdk-21
+PATH
+%JAVA_HOME%\bin
+
 JetBrains Runtime (JBR)
 The JetBrains Runtime (JBR)  is an enhanced JDK, distributed with Android Studio. It includes several optimizations for use in Studio and related JetBrains products, but can also be used to run other Java applications.
 
