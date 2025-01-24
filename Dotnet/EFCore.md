@@ -10,6 +10,8 @@ dotnet tool update --global dotnet-ef
 To install EF Core, you install the package for the EF Core database provider(s) you want to target.
 
 ```zsh
+# Primary packages for enabling database provider specific support in EF Core.
+% dotnet add package Microsoft.EntityFrameworkCore.Sqlite
 % dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 % dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
 ```
@@ -17,7 +19,11 @@ To install EF Core, you install the package for the EF Core database provider(s)
 Before you can use the EF Core tools on a specific project, you'll need to add the Microsoft.EntityFrameworkCore.Design package to it. Microsoft.EntityFrameworkCore.Design is a DevelopmentDependency package. Microsoft.EntityFrameworkCore.Design contains all the design-time logic for Entity Framework Core.
 
 ```zsh
+# This package is required if you plan to use EF Core tools for tasks like migrations.
 % dotnet add package Microsoft.EntityFrameworkCore.Design
+
+# If you're working with EF Core migrations and want to use CLI commands (like dotnet ef), you need this package.
+% dotnet add package Microsoft.EntityFrameworkCore.Tools
 ```
 
 # Code First

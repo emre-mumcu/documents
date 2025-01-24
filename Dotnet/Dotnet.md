@@ -1,3 +1,59 @@
+# dotnet
+
+The dotnet command has two functions:
+
+* It provides commands for working with .NET projects.
+* It runs .NET applications.
+
+To get information about the available commands and the environment:
+
+```bash
+dotnet [--version] [--info] [--list-runtimes] [--list-sdks]
+dotnet -h|--help
+```
+
+To run a command (requires SDK installation):
+
+```bash
+dotnet <COMMAND> [-d|--diagnostics] [-h|--help] [--verbosity <LEVEL>]
+    [command-options] [arguments]
+```
+
+To run an application:
+
+```bash
+dotnet [--additionalprobingpath <PATH>] [--additional-deps <PATH>]
+    [--fx-version <VERSION>]  [--roll-forward <SETTING>]
+    <PATH_TO_APPLICATION> [arguments]
+
+dotnet exec [--additionalprobingpath] [--additional-deps <PATH>]
+    [--depsfile <PATH>]
+    [--fx-version <VERSION>]  [--roll-forward <SETTING>]
+    [--runtimeconfig <PATH>]
+    <PATH_TO_APPLICATION> [arguments]
+```
+
+## dotnet commands
+
+Command	                Function
+dotnet build	        Builds a .NET application.
+dotnet build-server	    Interacts with servers started by a build.
+dotnet clean	        Clean build outputs.
+dotnet exec	            Runs a .NET application.
+dotnet help	            Shows more detailed documentation online for the command.
+dotnet migrate	        Migrates a valid Preview 2 project to a .NET Core SDK 1.0 project.
+dotnet msbuild	        Provides access to the MSBuild command line.
+dotnet new	            Initializes a C# or F# project for a given template.
+dotnet pack	            Creates a NuGet package of your code.
+dotnet publish	        Publishes a .NET framework-dependent or self-contained application.
+dotnet restore	        Restores the dependencies for a given application.
+dotnet run	            Runs the application from source.
+dotnet sdk check	    Shows up-to-date status of installed SDK and Runtime versions.
+dotnet sln	            Options to add, remove, and list projects in a solution file.
+dotnet store	        Stores assemblies in the runtime package store.
+dotnet test	            Runs tests using a test runner.
+
+
 # dotnet-aspnet-codegenerator
 
 ```zsh
