@@ -91,7 +91,7 @@ void main() {
 ## Comparison
 
 |Type|Syntax|Required?|Order Matters?|Default Value Support?|
-|---|---|---|---|---|
+|---|---|:---:|:---:|:---:|
 |Positional|(parameter1, parameter2)|Yes|Yes|No|
 |Named|({required parameter1, required parameter2})|Yes|No|Yes (if not required)|
 |Optional Positional|([parameter1, parameter2])|No|Yes|Yes|
