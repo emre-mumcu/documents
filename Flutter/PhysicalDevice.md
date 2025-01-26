@@ -14,6 +14,8 @@ Open Android Studio and install Google USB Driver in SDK Tools from SDK Manager 
 2.  Enable USB Debugging:
     In Settings (or Additional Settings) > Developer options, turn on USB debugging.
 
+3.  Open Developer Settings and allow USb Debugging and USB install settings.    
+
 3.  Connect your device to your computer via USB.
 
 ## 3. Connect your Device
@@ -23,6 +25,8 @@ Connect your Android Device to the PC and run the following command to verify th
 ```
 flutter devices
 ```
+
+You may need to allow access to the computer from the device screen.
 
 ## 4. Run the Project
 
