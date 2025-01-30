@@ -37,8 +37,9 @@ GRADLE_HOME
 ```
 |Variable Name|Value|
 |---|---|
-|ANDROID_HOME|C:\Android\studio\Sdk|
-|JAVA_HOME|C:\Android\java\jdk-21|
+|ANDROID_SDK_ROOT|C:\Android\sdk|
+|ANDROID_AVD_HOME|S:\AVD|
+|JAVA_HOME|C:\Android\jdk-17|
 |FLUTTER_HOME|C:\Android\flutter|
 |---|---|
 ```
