@@ -2,7 +2,12 @@
 
 To set up Android Studio and Flutter development, you need to configure several environment variables for Flutter, the Android SDK, and Java. Here’s a complete list:
 
-## 1. Android SDK Path
+## 1. Android Studio & SDK Path
+
+Android Studio path:
+
+ANDROID_STUDIO_HOME (for some configurations)
+STUDIO_HOME (less common)
 
 Required for Flutter and Android Studio. Use ANDROID_SDK_ROOT to define the Android SDK path.
 
@@ -37,6 +42,7 @@ GRADLE_HOME
 ```
 |Variable Name|Value|
 |---|---|
+|ANDROID_STUDIO_HOME|C:\Android\studio|
 |ANDROID_SDK_ROOT|C:\Android\sdk|
 |ANDROID_AVD_HOME|S:\AVD|
 |JAVA_HOME|C:\Android\jdk-17|
