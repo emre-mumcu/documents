@@ -59,7 +59,6 @@ GRADLE_HOME
 
 ## Example
 
-```
 | Variable Name | Value |
 | ---- | ---- |
 | ANDROID_STUDIO_HOME | C:\Android\studio |
@@ -70,7 +69,7 @@ GRADLE_HOME
 | ANDROID_USER_HOME | S:\.android |
 | JAVA_HOME | C:\Android\jdk-17 |
 | FLUTTER_HOME | C:\Android\flutter |
-```
+
 
 Add the following entries to the PATH:
 
