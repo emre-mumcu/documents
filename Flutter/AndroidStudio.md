@@ -64,12 +64,13 @@ GRADLE_HOME
 | ANDROID_STUDIO_HOME | C:\Android\studio |
 | ANDROID_HOME | C:\Android\sdk |
 | ANDROID_SDK_ROOT | C:\Android\sdk |
-| ANDROID_AVD_HOME | S:\AVD |
-| ANDROID_EMULATOR_HOME | S:\AVD |
-| ANDROID_USER_HOME | S:\.android |
+| ANDROID_AVD_HOME* | S:\AVD |
+| ANDROID_EMULATOR_HOME* | S:\AVD |
+| ANDROID_USER_HOME* | S:\.android |
 | JAVA_HOME | C:\Android\jdk-17 |
 | FLUTTER_HOME | C:\Android\flutter |
 
+*: These variables caused some troubles and din NOT work as expected. Use with caution!
 
 Add the following entries to the PATH:
 
