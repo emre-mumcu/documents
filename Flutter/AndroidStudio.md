@@ -62,14 +62,14 @@ GRADLE_HOME
 ```
 | Variable Name | Value |
 | ---- | ---- |
-|ANDROID_STUDIO_HOME|C:\Android\studio|
-|ANDROID_HOME|C:\Android\sdk|
-|ANDROID_SDK_ROOT|C:\Android\sdk|
-|ANDROID_AVD_HOME|S:\AVD|
-|ANDROID_EMULATOR_HOME|S:\AVD|
-|ANDROID_USER_HOME|S:\.android|
-|JAVA_HOME|C:\Android\jdk-17|
-|FLUTTER_HOME|C:\Android\flutter|
+| ANDROID_STUDIO_HOME | C:\Android\studio |
+| ANDROID_HOME | C:\Android\sdk |
+| ANDROID_SDK_ROOT | C:\Android\sdk |
+| ANDROID_AVD_HOME | S:\AVD |
+| ANDROID_EMULATOR_HOME | S:\AVD |
+| ANDROID_USER_HOME | S:\.android |
+| JAVA_HOME | C:\Android\jdk-17 |
+| FLUTTER_HOME | C:\Android\flutter |
 ```
 
 Add the following entries to the PATH:
