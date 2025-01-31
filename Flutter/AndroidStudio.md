@@ -60,8 +60,8 @@ GRADLE_HOME
 ## Example
 
 ```
-|Variable Name|Value|
-|---|---|
+| Variable Name | Value |
+| ---- | ---- |
 |ANDROID_STUDIO_HOME|C:\Android\studio|
 |ANDROID_HOME|C:\Android\sdk|
 |ANDROID_SDK_ROOT|C:\Android\sdk|
