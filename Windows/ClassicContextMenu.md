@@ -18,9 +18,13 @@ Right-click on the CLSID folder on the left pane, select New > Key, and name it:
 4. Modify the Default Value:
 
 * Click on the InprocServer32 key.
-* On the right side, double-click the (Default) entry and make sure the "Value data" field is empty. If there is any text, delete it and click OK.
+* On the right side, double-click the (Default) entry and open it and click save without entering any data. This is an important step for this hack to work. Make sure that data is empty string NOT null (value not assigned). 
 
 5. Restart Your Computer:
 
 Close the Registry Editor and restart your computer.
 Once you restart, the right-click context menu should revert to the old version from Windows 10. To undo the changes and switch back to the new menu, just delete the key you created in the Registry Editor.
+
+**NOTE**
+
+You can also open Command Prompt (admin) and run the “reg add “HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32″ /f /ve” command.
