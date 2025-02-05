@@ -1,3 +1,5 @@
+# How to get rid of annoying right click menu design of Windows 11
+
 In Windows 11, the right-click context menu was redesigned with a more streamlined look, but it doesn't provide all the options that the classic menu did. To switch back to the old right-click menu (the one from Windows 10), you need to modify a few settings in the Registry Editor.
 
 # Steps to Restore the Old Right-Click Menu in Windows 11
