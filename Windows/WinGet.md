@@ -16,11 +16,21 @@ To search for a tool, type winget search `appname`. After you have confirmed tha
 # search for Google Chrome
 PS> winget search Chrome
 
+# PowerToys
+PS> winget install -e --id Microsoft.PowerToys
+
+# Git
+PS> winget download -e --id Git.Git
+PS> winget install -e --id Git.Git 
+PS> winget install -e --id Git.Git --source winget
+
 # Install Google Chrome
-winget install -e --id Google.Chrome
-# Chrome will be downloaded from:
-# https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
+PS> winget install -e --id Google.Chrome
 ```
+
+* -e, --exact	Uses the exact string in the query, including checking for case-sensitivity.
+* --id	        Limits the install to the ID of the application.
+
 
 ## Commands
 
