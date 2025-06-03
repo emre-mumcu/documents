@@ -1,3 +1,18 @@
+# System & Hardware Information
+
+```zsh
+# CPU Name
+sysctl -n machdep.cpu.brand_string
+
+# System Info
+system_profiler
+system_profiler SPHardwareDataType
+system_profiler SPHardwareDataType | grep "Chip\|Processor Name"
+
+sysctl -a
+sysctl -a | grep machdep.cpu
+```
+
 # touch
 
 ```zsh
