@@ -1,3 +1,11 @@
+Shortcuts
+
+Shift + Option + ↓ → Duplicate line down
+Shift + Option + ↑ → Duplicate line up
+Shift + Option + S → Toggle line comment
+Shift + Option + A → Toggle multiline comment
+Shift + Control + T → Toggle terminal
+
 # To set up a code formatter for C# in Visual Studio Code (VS Code), follow these steps:
 
 Go to the Extensions View and search for C# and install the official C# extension by Microsoft.

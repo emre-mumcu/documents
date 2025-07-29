@@ -20,7 +20,38 @@
 ## Dotnet SDK
 
 ```zsh
-% brew install --cask dotnet-sdk
+# install
+brew install --cask dotnet-sdk
+
+# uninstall
+
+# List installed .NET versions
+dotnet --list-sdks
+dotnet --list-runtimes
+
+# To see how you installed dotnet, run the following commands and look for anything like dotnet or dotnet-sdk
+brew list --cask
+brew list
+
+# Depending on how you installed dotnet (cask vs formula), use the coreespondig command (you CAN run both to ensure!):
+brew uninstall --ignore-dependencies --force --cask dotnet
+brew uninstall --ignore-dependencies --force dotnet-sdk
+
+# To completely clean up:
+rm -rf ~/.dotnet
+rm -rf ~/.nuget
+sudo rm -rf /usr/local/share/dotnet
+
+# Also remove any exported path from your shell profile. Check ~/.zshrc, ~/.bash_profile, or ~/.bashrc for lines like:
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$HOME/.dotnet
+
+# Remove or comment them out. Then run:
+source ~/.zshrc
+
+# Verify Removal
+which dotnet
+dotnet --version
 ```
 
 ## Jdk
