@@ -1,0 +1,1 @@
+Qubes OS After Install Config: sudo /usr/libexec/initial-setup/initial-setup-graphical

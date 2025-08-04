@@ -1,3 +1,5 @@
+powercfg -h off
+
 net user Visitor /add /active:yes
 net user Visitor *
 net localgroup users Visitor /delete

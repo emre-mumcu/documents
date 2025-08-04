@@ -31,6 +31,16 @@ PS> winget install -e --id Google.Chrome
 * -e, --exact	Uses the exact string in the query, including checking for case-sensitivity.
 * --id	        Limits the install to the ID of the application.
 
+```bash
+# Git
+PS> winget install --id Git.Git --exact --source winget
+# Chrome
+PS> winget install --id Google.Chrome --exact --source winget
+
+winget search --id Google.Chrome --exact
+winget download --id Google.Chrome --exact
+```
+
 
 ## Commands
 
