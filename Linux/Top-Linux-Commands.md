@@ -1,5 +1,7 @@
 
 
+rm -rf *
+
 cd
 pwd
 ls ls-a
