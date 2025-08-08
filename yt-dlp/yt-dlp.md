@@ -35,6 +35,14 @@ You can use Snap or Flatpak if you have them installed, but these versions may n
 $ sudo snap install yt-dlp
 ```
 
+### FFMpeg
+
+FFmpeg is required for merging video and audio:
+
+```bash
+$ sudo apt install ffmpeg
+```
+
 ## How to Use
 
 To download a video as an MP4 file with the best resolution and audio using yt-dlp, use the following command:
@@ -54,12 +62,6 @@ $ yt-dlp -f "bestvideo[ext=mp4][height<=1080]+bestaudio[ext=m4a]/best[ext=mp4][h
 	* /best[ext=mp4]: Falls back to downloading the best single MP4 file if merging isn’t needed.
 * -o "%(title)s.%(ext)s": Sets the output file name to the video title with the appropriate extension.
 * [video_url]: Replace this with the URL of the video you want to download.
-
-NOTE: FFmpeg is required for merging video and audio:
-
-```bash
-$ sudo apt install ffmpeg
-```
 
 ## Create a Download Script
 
@@ -147,21 +149,45 @@ yt-dlp -f "bestaudio" --extract-audio --audio-format mp3 -o "%(title)s.%(ext)s" 
 % brew install ffmpeg
 % brew install yt-dlp
 ```
-Download shell scripts
 
-Allow to be run: chmod +x ~/Scripts/scriptadi.sh
-Terminalde bash mi yoksa zsh mi kullandığını öğren: echo $SHELL (Çıktı /bin/zsh ise zsh, /bin/bash ise bash kullanıyorsun.)
-Eğer zsh kullanıyorsan (`macOS Catalina ve sonrası default olarak zsh kullanır): nano ~/.zshrc 
-Eğer bash kullanıyorsan: nano ~/.bash_profile
-Açılan dosyanın en altına şunu ekle: export PATH="$HOME/Scripts:$PATH"
-Kaydedip çık (nano’da Ctrl + O, sonra Enter, sonra Ctrl + X).
-Değişikliği uygula: source ~/.zshrc / source ~/.bash_profile
+**Download shell scripts**
 
-İstersen script'e uzantı vermeyip sadece scriptadi şeklinde çağırmak için dosya adını uzantısız yapabilir ve yine çalıştırabilirsin. Örneğin: ~/Scripts/merhaba ve çalıştırırken merhaba.
+* [Mp3](/Files/yt-dlp/yt-mp3)
+* [Mp4 (720)](/Files/yt-dlp/yt-720)
+* [Mp4 (1080)](/Files/yt-dlp/yt-1080)
+* [Mp4 (Best)](/Files/yt-dlp/yt-best)
 
-NOT: ~ (tilde), kullanıcının ev dizini anlamına gelir. Yani:
-~        ===        $HOME        ===        /Users/Username
+After downloading the scripts, allow them to be run: 
 
+> chmod +x ~/Scripts/scriptadi.sh
+
+### Add to PATH
+
+Copy the downloaded scripts to a folder `$HOME/Scripts`
+
+Check which shell you are using:
+
+> echo $SHELL 
+
+```bash
+# zsh
+% vi ~/.zshrc 
+# bash
+% vi ~/.bash_profile
+```
+
+Add the following PATH entry:
+
+> export PATH="$HOME/Scripts:$PATH"
+
+Apply the change:
+
+```bash
+# zsh
+% source ~/.zshrc 
+# bash
+% source ~/.bash_profile
+```
 
 # References
 

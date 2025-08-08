@@ -1,5 +1,11 @@
 # MacOS Tips & Tricks
 
+Terminalde bash mi yoksa zsh mi kullandığını öğren: echo $SHELL (Çıktı /bin/zsh ise zsh, /bin/bash ise bash kullanıyorsun.)
+
+NOT: ~ (tilde), kullanıcının ev dizini anlamına gelir. Yani:
+~        ===        $HOME        ===        /Users/Username
+
+
 ## MacOS Recovery
 
 * Command-R: When you press and hold these two keys at startup, Recovery will offer the current version of the most recently installed macOS.
