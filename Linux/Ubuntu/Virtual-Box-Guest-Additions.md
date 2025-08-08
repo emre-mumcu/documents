@@ -1,8 +1,8 @@
 # Install VirtualBox Guest Additions on Ubuntu
 
-Before installing VirtualBox Guest Additons on Ubuntu, update your system.
+Before installing VirtualBox Guest Additons on Ubuntu, [update](/Linux/Ubuntu/Update.md) your system.
 
-[Link Text](/Linux/Ubuntu/Update.md)
+
 
 
 
