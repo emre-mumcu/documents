@@ -22,4 +22,6 @@ Think of them as plug-ins for the Linux kernel—they extend the kernel’s func
 
 > *Example:* Check if VirtualBox modules are loaded:
 
-lsmod | grep vbox
+```bash
+$ lsmod | grep vbox
+```
