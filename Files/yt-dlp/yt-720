@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 [YouTube URL]"
+    exit 1
+fi
+
+YT_URL="$1"
+
+# Run the yt-dlp command directly
+yt-dlp -f "bestvideo[ext=mp4][height<=720]+bestaudio[ext=m4a]/best[ext=mp4][height<=720]" -o "%(title)s.%(ext)s" "$YT_URL"
