@@ -2,7 +2,32 @@
 
 In Ubuntu 24.04 and upcoming versions, desktop environments like GNOME handle desktop shortcuts differently than older versions.
 
-You can manually create a .desktop file and put it on your Desktop.
+## For Folder/File shortcuts:
+
+Either directly use the terminal to create a symbolic link
+
+> ln -s target-path destination-path
+
+or
+
+Open the folder in the file manager (nautilus), navigate to the directory to which you want to create a shortcut to. Right click and select Open in Terminal. 
+
+For shortcut to current directory, type and execute
+
+> ln -s $PWD ~/Desktop/
+
+For shortcut to a file/folder inside the current directory, type and execute
+
+> ln -s $PWD/filename ~/Desktop/
+> ln -s $PWD/dirname ~/Desktop/
+
+## For Application Shortcuts:
+
+1) Open /usr/share/applications
+2) Copy the application shortcut to desktop
+3) Right click on the shortcut on the desktop and select Allow Launching
+
+## You can manually create a .desktop file and put it on your Desktop.
 
 The .desktop file format is standard for launching GUI apps.
 
@@ -103,3 +128,7 @@ Option B: Use full path to a custom icon
 You can also use your own image file:
 
 Icon=/home/yourusername/Pictures/chromium.png
+
+# References
+
+* https://askubuntu.com/questions/1232612/how-to-make-a-desktop-shortcut-on-ubuntu-20-04
