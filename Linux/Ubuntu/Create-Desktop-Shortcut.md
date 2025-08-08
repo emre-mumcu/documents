@@ -23,7 +23,9 @@ For shortcut to a file/folder inside the current directory, type and execute
 
 ## For Application Shortcuts:
 
-1) Open /usr/share/applications
+Many applications already come with .desktop files. 
+
+1) Open `/usr/share/applications` 
 2) Copy the application shortcut to desktop
 3) Right click on the shortcut on the desktop and select Allow Launching
 
