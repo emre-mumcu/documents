@@ -1,5 +1,12 @@
 # Install VirtualBox Guest Additions on Ubuntu
 
+Before installing VirtualBox Guest Additons on Ubuntu, update your system.
+
+[Link Text](update.md)
+
+
+
+
 sudo apt update && sudo apt upgrade -y
 
 sudo apt install build-essential dkms linux-headers-$(uname -r)
