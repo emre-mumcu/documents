@@ -28,7 +28,7 @@ It does change system aggressively.
 
 ## update && upgrade
 
-sudo apt update && sudo apt upgrade -y
+> sudo apt update && sudo apt upgrade -y
 
 ## autoremove
 
@@ -37,6 +37,10 @@ Clean unused packages:
 > sudo apt autoremove
 
 ## do-release-upgrade
+
+Check Your Current Version:
+
+> lsb_release -a
 
 Release Upgrade Process. This will upgrade to the next available release:
 
