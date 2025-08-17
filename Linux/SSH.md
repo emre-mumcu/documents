@@ -1,6 +1,25 @@
 # How To Configure SSH Key-Based Authentication on a Linux Server
 
-SSH, or secure shell, is an encrypted protocol used to administer and communicate with servers. While there are a few different ways of logging into an SSH server, SSH keys provide an extremely secure way of logging into your server.
+SSH, or secure shell, is an encrypted protocol used to administer and communicate with servers. 
+
+On Ubuntu, the SSH client is installed by default, but the server is not.
+
+```bash
+% sudo apt update
+% sudo apt install openssh-server -y
+
+% sudo systemctl status ssh
+% sudo systemctl start ssh
+% sudo systemctl enable ssh
+
+% ss -tuln | grep 22
+
+% sudo ufw allow ssh
+% sudo ufw reload
+% sudo ufw status
+```
+
+While there are a few different ways of logging into an SSH server, SSH keys provide an extremely secure way of logging into your server.
 
 SSH key pairs are two cryptographically secure keys that can be used to authenticate a client to an SSH server. Each key pair consists of a public key and a private key.
 
