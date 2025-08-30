@@ -29,4 +29,8 @@ Once you restart, the right-click context menu should revert to the old version 
 
 **NOTE**
 
-You can also open Command Prompt (admin) and run the “reg add “HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32″ /f /ve” command.
+You can also open Command Prompt (admin) and run:
+
+```bash
+PS> reg add “HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32″ /f /ve
+```

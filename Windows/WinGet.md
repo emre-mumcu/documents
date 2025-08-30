@@ -41,6 +41,16 @@ winget search --id Google.Chrome --exact
 winget download --id Google.Chrome --exact
 ```
 
+## Common Applications
+
+```bash
+PS> winget download --id Google.Chrome --exact --source winget
+PS> winget download --id Git.Git --exact --source winget
+PS>
+PS>
+PS>
+```
+
 
 ## Commands
 
