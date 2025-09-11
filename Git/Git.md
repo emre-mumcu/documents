@@ -1,36 +1,30 @@
 # GIT
 
-https://www.atlassian.com/git/tutorials/
+Git is a mature, actively maintained open source version control system originally developed in 2005 by Linus Torvalds, the famous creator of the Linux operating system kernel.
+
+Having a distributed architecture, Git is an example of a DVCS (Distributed Version Control System). Rather than have only one single place for the full version history of the software as is common in once-popular version control systems like CVS or Subversion (also known as SVN), in Git, every developer's working copy of the code is also a repository that can contain the full history of all changes.
+
+Git repository are secured with a cryptographically secure hashing algorithm called SHA1. 
 
 ## What is version control?
-Version control, also known as source control, is the practice of tracking and managing changes to software code. Version control software keeps track of every modification to the code in a special kind of database.
+Version control (a.k.a. source control) is the practice of tracking and managing changes to software code. Version control software keeps track of every modification to the code in a special kind of database.
 
-The primary benefits you should expect from version control are as follows:
+The primary benefits you should expect from a version control are as follows:
 
 1. A complete long-term change history of every file. 
 2. Branching and merging.
 3. Traceability.
 
-By far, the most widely used modern version control system in the world today is Git. Git is a mature, actively maintained open source project originally developed in 2005 by Linus Torvalds, the famous creator of the Linux operating system kernel.
-
-Having a distributed architecture, Git is an example of a DVCS (hence Distributed Version Control System). Rather than have only one single place for the full version history of the software as is common in once-popular version control systems like CVS or Subversion (also known as SVN), in Git, every developer's working copy of the code is also a repository that can contain the full history of all changes.
-
-Git repository are secured with a cryptographically secure hashing algorithm called SHA1. 
-
-## Setting up a repository
-A Git repository is a virtual storage of your project. It allows you to save versions of your code, which you can access when needed. 
-
-### Initializing a new repository: git init
-To create a new repo, you'll use the `git init` command. `git init` is a one-time command you use during the initial setup of a new repo.
-
-Executing this command will create a new .git subdirectory in your current working directory. This will also create a new main branch. A HEAD file is also created which points to the currently checked out commit.
+## Setting up a Git repository
+A Git repository is a virtual storage of your project. It allows you to save versions of your code, which you can access when needed. To create a new repo, you'll use the 
+`git init` command. `git init` is a one-time command you use during the initial setup of a new repo. Executing this command will create a new .git subdirectory in your current working directory. This will also create a new main branch. A HEAD file is also created which points to the currently checked out commit.
 
 ```zsh
 % git init
 % git init project-directory
 ```
 
-#### Bare repositories --- git init --bare
+#### Bare Repositories
 The `--bare` flag creates a repository that doesn’t have a working directory, making it impossible to edit files and commit changes in that repository. You would create a bare repository to git push and git pull from, but never directly commit to it. Central repositories should always be created as bare repositories because pushing branches to a non-bare repository has the potential to overwrite changes. Think of `--bare` as a way to mark a repository as a storage facility, as opposed to a development environment.
 
 ```zsh
@@ -494,3 +488,4 @@ Git has a number of different transfer protocols you can use. The previous examp
 # References
 * https://www.atlassian.com/git/tutorials/setting-up-a-repository
 * https://pages.github.com/ 
+* https://www.atlassian.com/git/tutorials/
