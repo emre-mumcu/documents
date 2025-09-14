@@ -1,3 +1,24 @@
+# Docker
+
+Docker is an open platform for developing, shipping, and running applications. It helps in containerizing your application along with its dependencies so that your application can work seamlessly in any environment.
+
+Docker Image is an executable package of software that includes everything needed to run an application.
+
+Containers are an abstraction at the app layer that packages code and dependencies together. Basically It is a runnable instance of an image.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Rocky Linux
 
 ```zsh

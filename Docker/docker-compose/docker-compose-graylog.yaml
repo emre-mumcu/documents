@@ -1,0 +1,50 @@
+services:
+  mongodb:
+    image: mongo:4.2
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - graylog_network
+    
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - graylog_network
+    ports:
+      - "9200:9200"
+
+  graylog:
+    image: graylog/graylog:4.2
+    environment:
+      - GRAYLOG_HTTP_EXTERNAL_URI=http://localhost:9000/
+      - GRAYLOG_ROOT_PASSWORD_SHA2=1967bfa68e40013348762184193c2a457be7a6975d1d5da6a8161d0e9165dbbb
+      - GRAYLOG_MONGO_URI=mongodb://mongodb/graylog
+      - GRAYLOG_ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mongodb
+      - elasticsearch
+    networks:
+      - graylog_network
+    restart: always
+
+networks:
+  graylog_network:
+    driver: bridge
+
+volumes:
+  mongo_data:
+    driver: local
+  elasticsearch_data:
+    driver: local
