@@ -4,7 +4,7 @@ services:
     image: mongo:8.0
     container_name: mongodb8
     hostname: mongodb8
-    restart: unless-stopped #"on-failure" #unless-stopped #always
+    restart: "unless-stopped" #"on-failure" #unless-stopped #always
     volumes:
       - "mongodb_data:/data/db"
       - "mongodb_config:/data/configdb"
@@ -18,34 +18,37 @@ services:
       timeout: 5s
       retries: 5	  
     
-  opensearch:
-    image: opensearchproject/opensearch:2.19.0
-    container_name: opensearch
-    hostname: opensearch
+  # For DataNode setup, graylog starts with a preflight UI, this is a change from just using OpenSearch/Elasticsearch.
+  # Please take a look at the README at the top of this repo or the regular docs for more info.
+  # Graylog Data Node: https://hub.docker.com/r/graylog/graylog-datanode
+
+  # ⚠️ Make sure this is set on the host before starting:
+  # echo "vm.max_map_count=262144" | sudo tee -a /etc/sysctl.conf
+  # sudo sysctl -p
+  datanode:
+    image: "graylog/graylog-datanode:6.3"
+    hostname: "datanode"
     environment:
-      - discovery.type=single-node
-      - plugins.security.disabled=true
-      - bootstrap.memory_lock=true
-      - OPENSEARCH_JAVA_OPTS=-Xms1g -Xmx1g
-      - "action.auto_create_index=false" 
-      - "plugins.security.ssl.http.enabled=false"
-      - "plugins.security.disabled=true"
-      - "OPENSEARCH_INITIAL_ADMIN_PASSWORD=+_8r#wliY3Pv5-HMIf4qzXImYzZf-M=M"
-    ports:
-      - "9200-9200" # "9203:9200"
-      - "9300-9300" # "9303:9300"
+      GRAYLOG_DATANODE_NODE_ID_FILE: "/var/lib/graylog-datanode/node-id"
+      # GRAYLOG_DATANODE_PASSWORD_SECRET and GRAYLOG_PASSWORD_SECRET MUST be the same value
+      GRAYLOG_DATANODE_PASSWORD_SECRET: "0123456789ABCDEF"
+      GRAYLOG_DATANODE_MONGODB_URI: "mongodb://mongodb:27017/graylog"
     ulimits:
       memlock:
-        soft: -1
         hard: -1
+        soft: -1
       nofile:
         soft: 65536
         hard: 65536
-    restart: unless-stopped
+    ports:
+      - "8999:8999/tcp"   # DataNode API
+      - "9200:9200/tcp"
+      - "9300:9300/tcp"
     networks:
-      - graylog_network
+      - graylog_network  
     volumes:
-      - "opensearch:/usr/share/opensearch/data"  
+      - "graylog-datanode:/var/lib/graylog-datanode"
+    restart: "on-failure" 
 
   graylog:
     image: graylog/graylog:6.3
@@ -54,6 +57,7 @@ services:
     domainname: internal
     environment:
       - GRAYLOG_HTTP_EXTERNAL_URI=http://127.0.0.1:9000/
+      # GRAYLOG_DATANODE_PASSWORD_SECRET and GRAYLOG_PASSWORD_SECRET MUST be the same value
       - GRAYLOG_PASSWORD_SECRET=0123456789ABCDEF
       - GRAYLOG_ROOT_PASSWORD_SHA2=1967bfa68e40013348762184193c2a457be7a6975d1d5da6a8161d0e9165dbbb
       #- GRAYLOG_MONGO_URI=mongodb://mongodb:27017/graylog
@@ -80,7 +84,7 @@ services:
     depends_on: # service names
       mongodb:
         condition: service_started
-      opensearch:
+      datanode:
         condition: service_started
     entrypoint: "/usr/bin/tini -- wait-for-it opensearch:9200 -- /docker-entrypoint.sh"
     networks:
@@ -95,6 +99,6 @@ networks:
 volumes:
   mongodb_data:
   mongodb_config:
-  opensearch:
+  graylog-datanode:
   graylog_data:
     driver: local
