@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: mongo:4.2
+    image: mongo:8.0
     restart: always
     volumes:
       - mongo_data:/data/db
@@ -24,9 +24,10 @@ services:
       - "9200:9200"
 
   graylog:
-    image: graylog/graylog:4.2
+    image: graylog/graylog:6.3
     environment:
       - GRAYLOG_HTTP_EXTERNAL_URI=http://localhost:9000/
+      - GRAYLOG_PASSWORD_SECRET=0123456789ABCDEF
       - GRAYLOG_ROOT_PASSWORD_SHA2=1967bfa68e40013348762184193c2a457be7a6975d1d5da6a8161d0e9165dbbb
       - GRAYLOG_MONGO_URI=mongodb://mongodb/graylog
       - GRAYLOG_ELASTICSEARCH_HOSTS=http://elasticsearch:9200

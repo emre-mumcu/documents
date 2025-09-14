@@ -48,8 +48,11 @@ By default, docker compose (or docker-compose on older versions) only looks for 
 If you have multiple `.yaml` or `.yml` files with different names in the same directory, you need to specify them with `-f` (or `--file`).
 
 ```bash
-docker compose -f myfile.yaml up
-docker compose -p project-name -f myfile.yaml up
+# Validate compose file
+docker compose -f myfile.yaml config
+
+docker compose -f myfile.yaml up -d
+docker compose -p project-name -f myfile.yaml up -d
 
 # You can stack them together (later files override earlier ones):
 docker compose -f base.yaml -f override.yaml up
