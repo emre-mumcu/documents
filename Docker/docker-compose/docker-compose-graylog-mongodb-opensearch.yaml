@@ -4,7 +4,7 @@ services:
     image: mongo:8.0
     container_name: mongodb8
     hostname: mongodb8
-    restart: "on-failure" #unless-stopped #always
+    restart: unless-stopped #"on-failure" #unless-stopped #always
     volumes:
       - "mongodb_data:/data/db"
       - "mongodb_config:/data/configdb"
@@ -55,9 +55,9 @@ services:
       - GRAYLOG_ELASTICSEARCH_HOSTS=http://elasticsearch:9200
       - GRAYLOG_REPORT_DISABLE_SANDBOX="true"
       - GRAYLOG_ELASTICSEARCH_HOSTS="http://opensearch:9200"
-      - GRAYLOG_NODE_ID_FILE="/usr/share/graylog/data/config/node-id"
+      #- GRAYLOG_NODE_ID_FILE="/usr/share/graylog/data/config/node-id"
       - GRAYLOG_HTTP_BIND_ADDRESS="0.0.0.0:9000"
-    restart: "on-failure"
+    restart: unless-stopped
     ports:
       - "9000:9000/tcp"     # Graylog web interface and REST API
       - "5044:5044/tcp"     # Graylog beats
