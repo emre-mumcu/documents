@@ -1,3 +1,7 @@
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
 # MVC Builder
 
 In ASP.NET Core, we can configure the MVC (Model-View-Controller) and Razor Pages services by calling methods such as AddControllers(), AddMvc(), AddControllersWithViews(), and AddRazorPages() on the IServiceCollection. When building an ASP.NET Core application, choosing the right service configuration method is crucial for optimizing functionality and performance.
