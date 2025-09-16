@@ -140,6 +140,27 @@ Windows Registry Editor Version 5.00
 
 Double-click the file to run and restart your PC for changes to take effect.
 
+In order to re-enable it:
+
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer]
+"DisableSearchBoxSuggestions"=dword:00000000
+"DisableWebSearch"=dword:00000000
+"ConnectedSearchUseWeb"=dword:00000001
+```
+
+or If you prefer to completely remove the policy settings (so Windows goes back to default), you could instead use this cleaner version:
+
+```reg
+Windows Registry Editor Version 5.00
+
+[-HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer]
+```
+
+This deletes the Explorer policy key entirely.
+
 # 2. Useful Windows Shortlinks
 
 Win+R (Run)
