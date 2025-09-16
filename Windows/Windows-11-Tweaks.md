@@ -123,6 +123,23 @@ Now “Open with Code” will show directly in the new Windows 11 context menu. 
 
 *Note that path values may vary depending on the VSCode installation.*
 
+# Prevent Bing Search Result in Start Menu Search
+
+Set Windows 11’s Start Menu search to only look at local results (apps, files, settings) and not pull results from the web (Bing).
+
+Create a new file with name of `DisableWebSearch.reg` and edit the file as follows:
+
+```reg
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer]
+"DisableSearchBoxSuggestions"=dword:00000001
+"DisableWebSearch"=dword:00000001
+"ConnectedSearchUseWeb"=dword:00000000
+```
+
+Double-click the file to run and restart your PC for changes to take effect.
+
 # 2. Useful Windows Shortlinks
 
 Win+R (Run)
