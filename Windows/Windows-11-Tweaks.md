@@ -129,3 +129,9 @@ Win+R (Run)
 
 shell:startup
 
+
+
+powercfg -h off
+powercfg -h on
+
+powercfg /availablesleepstates
