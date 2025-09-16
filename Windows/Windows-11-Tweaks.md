@@ -40,7 +40,8 @@ PS> reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\
 PS> reg delete "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}" /f
 
 # Apply immediately: After running either set of commands, restart Explorer:
-PS> taskkill /f /im explorer.exe & start explorer.exe
+PS> taskkill /f /im explorer.exe 
+PS> start explorer.exe
 ```
 
 **NOTE**
